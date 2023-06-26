@@ -72,4 +72,22 @@ router.put("/posts/:postId", async (req, res) => {
   res.status(200).json({ data: "게시글이 수정되었습니다." });
 });
 
+// 게시글 삭제
+router.delete("/posts/:postId", async (req, res) => {
+  //   const { userId } = res.locals.user;
+  const { postId } = req.params;
+
+  const post = await Posts.findOne({ where: { postId } });
+  if (!post) {
+    return res.status(404).json({ message: "게시글이 존재하지 않습니다." });
+  }
+  //   else if (post.userId !== userId) {
+  //     return res.status(404).json({ message: "수정할 권한이 없습니다." });
+  //   }
+
+  await Posts.destroy({ where: { postId } });
+
+  res.status(200).json({ data: "게시글이 삭제되었습니다." });
+});
+
 module.exports = router;
