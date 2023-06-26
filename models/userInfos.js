@@ -11,38 +11,37 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User -
-    Infos.init(
-      {
-        infoId: {
-          allowNull: false,
-          autoIncrement: true,
-          primaryKey: true,
-          type: DataTypes.INTEGER,
-        },
-        userId: {
-          allowNull: false,
-          type: DataTypes.INTEGER,
-        },
-        introduce: {
-          allowNull: false,
-          type: DataTypes.STRING,
-        },
-        createdAt: {
-          allowNull: false,
-          type: DataTypes.DATE,
-          defaultValue: DataTypes.NOW,
-        },
-        updatedAt: {
-          allowNull: false,
-          type: DataTypes.DATE,
-          defaultValue: DataTypes.NOW,
-        },
+  UserInfos.init(
+    {
+      infoId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
       },
-      {
-        sequelize,
-        modelName: "User-Infos",
-      }
-    );
-  return User - Infos;
+      userId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      introduce: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+    },
+    {
+      sequelize,
+      modelName: "User-Infos",
+    }
+  );
+  return UserInfos;
 };

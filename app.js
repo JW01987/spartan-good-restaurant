@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const connect = require("./schemas");
 const cookieParser = require("cookie-parser");
 const {
   commentRouter,
@@ -10,18 +9,11 @@ const {
   userInfosRouter,
   authRouter,
 } = require("./routes");
-connect();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/api", [
-  postRouter,
-  commentRouter,
-  usersRouter,
-  authRouter,
-  userInfosRouter,
-]);
+app.use("/api", [postRouter]);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
