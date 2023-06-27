@@ -16,8 +16,8 @@ app.use(cookieParser());
 app.use("/api", [
   postRouter,
   commentRouter,
-  usersRouter, //내가한거
-  authRouter, //
+  usersRouter, 
+  authRouter, 
   userInfosRouter,
 ]);
 app.get("/", (req, res) => {

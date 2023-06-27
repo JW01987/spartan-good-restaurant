@@ -2,8 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken"); //
 const router = express.Router();
 const { Users, UserInfos } = require("../models"); //새로적은코드
-//밑에 코드 확인필요
-//const User = require("../schemas/user");//어떤코드를 넣어야하는가
+
 
 //회원가입//
 router.post("/users", async (req, res) => {
@@ -56,6 +55,15 @@ router.post("/login", async (req, res) => {
   //response 할당
   return res.status(200).json({ message: "로그인 성공" });
 });
+
+//로그아웃 API
+router.post("/logout", (req, res) => {   //클라에서 해당경로로 요청을 보내면 서버는 쿠키의 authorization토큰을삭제
+  // 클라이언트에서 토큰 삭제
+  res.clearCookie("authorization");//메서드를 사용하여 클라 쿠키 삭제
+
+  return res.status(200).json({ message: "로그아웃되었습니다." });//응답값
+});
+
 
 //사용자 조회 API
 router.get("/users/:userId", async (req, res) => {
