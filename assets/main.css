@@ -6,6 +6,13 @@ html {
   padding: 0;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* card */
+
 .band {
   width: 90%;
   max-width: 100%;
@@ -72,8 +79,6 @@ html {
   }
 } */
 
-/* card */
-
 .card {
   min-height: 100%;
   background: white;
@@ -111,7 +116,6 @@ html {
   line-height: 1.4;
 }
 
-/* typography */
 h1 {
   font-size: 20px;
   margin: 0;
@@ -126,6 +130,8 @@ h1 {
   letter-spacing: 0.05em;
   margin: 2em 0 0 0;
 }
+
+/* login & register */
 
 .overlay {
   position: fixed;
@@ -212,4 +218,47 @@ header {
 #search-login > i {
   margin-right: 1rem;
   font-size: 1.3rem;
+}
+
+/* userInfo */
+
+.user-info {
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+  align-items: center;
+}
+
+.user-wrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-style: hidden hidden solid hidden;
+  border-width: 1px;
+}
+
+.wrapper-content-button {
+  display: flex;
+}
+
+.content {
+  font-weight: 350;
+}
+
+.wrapper-title {
+  width: 10rem;
+}
+
+.wrapper-content {
+  width: 40rem;
 }
