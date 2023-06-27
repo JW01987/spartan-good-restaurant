@@ -2,7 +2,8 @@ html {
   background: #f5f7f8;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
-  padding: 20px 0;
+  margin: 0;
+  padding: 0;
 }
 
 .band {
@@ -174,4 +175,40 @@ h1 {
   top: 10px; /* 추가 */
   right: 10px; /* 추가 */
   cursor: pointer; /* 추가 */
+}
+
+/* header */
+
+header {
+  height: 4rem;
+}
+
+.head {
+  height: 100%;
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#home-button {
+  font-size: 1.5rem;
+  border-style: none;
+  background-color: #f5f7f8;
+}
+
+#login-button {
+  border-radius: 3rem;
+  border-style: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  background-color: #212529;
+  color: #ffff;
+}
+
+#search-login > i {
+  margin-right: 1rem;
+  font-size: 1.3rem;
 }
