@@ -19,11 +19,16 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
+      email: {       //내가넣은코드
+        allowNull: false, //   
+        type: DataTypes.STRING,//
+        unique: true,//
+      },
       nickname: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      password: {
+      password: {     //패스워드
         allowNull: false,
         type: DataTypes.STRING,
       },
