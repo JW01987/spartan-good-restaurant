@@ -13,8 +13,20 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      introduce: {
+      nickname: {
         allowNull: false,
+        type: Sequelize.STRING,
+      },
+      age: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
+      gender: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
+      introduce: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       createdAt: {
