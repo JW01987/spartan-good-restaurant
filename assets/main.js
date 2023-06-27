@@ -50,8 +50,9 @@ loginRegisterButton.addEventListener('click', (event) => {
   } else {
     console.log('로그인 버튼 클릭');
     // 로그인 처리
-    const inputNickname = document.getElementById('inputNickname').value;
+    const inputNickname = document.getElementById('inputNickname').value; // db에서 불러오는걸로 바꿔야 됨
     nicknameButton.innerText = inputNickname; // 닉네임으로 버튼 텍스트 변경
+    loginButton.style.display = 'block';
     nicknameButton.style.display = 'inline-block'; // 닉네임 버튼 표시
     newPostButton.style.display = 'inline-block'; // 새글 작성 버튼 표시
     userMenuButton.style.display = 'inline-block'; // 사용자 메뉴 버튼 표시
