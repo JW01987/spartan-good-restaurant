@@ -23,8 +23,20 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      introduce: {
+      nickname: {
         allowNull: false,
+        type: DataTypes.STRING,
+      },
+      age: {
+        allowNull: true,
+        type: DataTypes.INTEGER,
+      },
+      gender: {
+        allowNull: true,
+        type: DataTypes.INTEGER,
+      },
+      introduce: {
+        allowNull: true,
         type: DataTypes.STRING,
       },
       createdAt: {

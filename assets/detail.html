@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/550a0f2627.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="head">
+        <div id="home">
+          <button id="home-button" style="cursor: pointer">matlog</button>
+        </div>
+        <div id="search-login">
+          <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
+          <button id="login-button" style="cursor: pointer">로그인</button>
+          <!-- 추가: 새글 작성 버튼 -->
+          <button id="new-post-button" style="cursor: pointer; display: none">
+            새글 작성
+          </button>
+          <!-- 추가: 사용자 정보 -->
+          <button
+            id="nickname-button"
+            style="cursor: pointer; display: none"
+          ></button>
+          <!-- 추가: 사용자 메뉴 -->
+          <button id="user-menu-button" style="cursor: pointer; display: none">
+            <i class="fas fa-caret-down"></i>
+          </button>
+          <div id="user-menu" style="display: none">
+            <ul>
+              <li>사용자 글</li>
+              <li>사용자 정보</li>
+              <li>로그아웃</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <script src="main.js"></script>
+  </body>
+</html>
