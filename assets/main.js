@@ -6,6 +6,10 @@ const signupLink = document.getElementById('signup-link');
 const loginRegisterButton = document.getElementById('login-register-button');
 const loginP = document.getElementById('login-p');
 const closeIcon = document.getElementById('close-icon');
+const nicknameButton = document.getElementById('nickname-button');
+const newPostButton = document.getElementById('new-post-button');
+const userMenuButton = document.getElementById('user-menu-button');
+const userMenu = document.getElementById('user-menu');
 
 loginButton.addEventListener('click', () => {
   overlay.style.display = 'flex';
@@ -41,28 +45,24 @@ loginContainer.addEventListener('keydown', (event) => {
 loginRegisterButton.addEventListener('click', (event) => {
   event.preventDefault(); // 기본 이벤트 동작 취소
   if (loginRegisterButton.innerText === '회원가입') {
+    console.log('회원가입 버튼 클릭');
     // 회원가입 처리
   } else {
+    console.log('로그인 버튼 클릭');
     // 로그인 처리
-    // 로그인 인증 완료 후 닉네임으로 변경
-    const inputNickname = document.getElementById('inputNickname');
-    const userNickname = inputNickname.value;
-    loginRegisterButton.innerText = userNickname;
+    const inputNickname = document.getElementById('inputNickname').value;
+    nicknameButton.innerText = inputNickname; // 닉네임으로 버튼 텍스트 변경
+    nicknameButton.style.display = 'inline-block'; // 닉네임 버튼 표시
+    newPostButton.style.display = 'inline-block'; // 새글 작성 버튼 표시
+    userMenuButton.style.display = 'inline-block'; // 사용자 메뉴 버튼 표시
+  }
+});
 
-    // 사용자 메뉴 표시를 위한 작은 화살표 버튼 추가
-    const userMenuButton = document.createElement('userMenuButton');
-    userMenuButton.innerHTML = '<i class="fa-solid fa-caret-down"></i>';
-    userMenuButton.id = 'user-menu-button';
-
-    // 사용자 메뉴 열기
-    userMenuButton.addEventListener('click', () => {
-      // 사용자 메뉴 열기 코드 작성
-    });
-
-    // 로그인 버튼과 사용자 메뉴 버튼을 동시에 표시하기 위해 부모 요소를 가져옴
-    const loginButtonParent = loginRegisterButton.parentNode;
-
-    // 로그인 버튼 대신 사용자 메뉴 버튼으로 교체
-    loginButtonParent.replaceChild(userMenuButton, loginRegisterButton);
+// 추가: 사용자 메뉴 토글
+userMenuButton.addEventListener('click', () => {
+  if (userMenu.style.display === 'none') {
+    userMenu.style.display = 'block';
+  } else {
+    userMenu.style.display = 'none';
   }
 });
