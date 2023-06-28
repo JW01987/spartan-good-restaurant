@@ -18,9 +18,8 @@ router.post("/users", async (req, res) => {
   // 사용자 테이블에 데이터삽입
   const user = await Users.create({ email, password });
   // 사용자 정보 테이블에 데이터 삽입
-  // console.log(user.userId);
   const userInfo = await UserInfos.create({
-    userId: user.userId, //현재 사용자 정보가 19번째 줄에서 생성된 사용자의 userId를 할당합니다
+    userId: user.id, //현재 사용자 정보가 19번째 줄에서 생성된 사용자의 userId를 할당합니다
     nickname,
     age,
     gender,

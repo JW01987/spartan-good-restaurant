@@ -12,9 +12,9 @@ module.exports = async (req, res, next) => {
     }
 
     const decodedToken = jwt.verify(token, "customized_secret_key");
-    const userId = decodedToken.userId;
+    const userId = decodedToken.id;
 
-    const user = await Users.findOne({ where: { userId } });
+    const user = await Users.findOne({ where: { id: userId } });
     if (!user) {
       //res.clearCookie("authorization");
       return res
