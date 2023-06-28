@@ -10,6 +10,7 @@ const loginForm = document.getElementById('login-form');
 const newPostButton = document.getElementById('new-post-button');
 const nicknameButton = document.getElementById('nickname-button');
 const userMenuButton = document.getElementById('user-menu-button');
+const userMenuUI = document.getElementById('user-menu');
 
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener('click', () => {
@@ -51,6 +52,7 @@ function showLoggedOutUI() {
   userMenuButton.style.display = 'none';
   newPostButton.style.display = 'none';
   nicknameButton.style.display = 'none';
+  userMenuUI.style.display = 'none';
 }
 
 function getCookie(name) {
@@ -182,5 +184,38 @@ loginForm.addEventListener('submit', async (event) => {
     }
   } catch (error) {
     console.error('Error:', error);
+  }
+});
+
+const userMenu = document.getElementById('user-menu');
+
+userMenuButton.addEventListener('click', () => {
+  userMenu.style.display = userMenu.style.display === 'none' ? 'block' : 'none';
+});
+
+const logoutButton = document.getElementById('logout-button');
+
+logoutButton.addEventListener('click', async () => {
+  {
+    // 로그아웃 API 요청을 수행합니다.
+    fetch('/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          // 로그아웃이 성공하면 UI 업데이트
+          showLoggedOutUI();
+          alert('로그아웃되었습니다.');
+        } else {
+          alert('로그아웃을 할 수 없습니다.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('로그아웃을 할 수 없습니다.');
+      });
   }
 });
