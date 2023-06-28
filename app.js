@@ -7,7 +7,6 @@ const {
   postRouter,
   usersRouter,
   userInfoRouter,
-  userInfoRouter,
   authRouter,
 } = require("./routes");
 
