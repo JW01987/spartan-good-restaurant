@@ -185,27 +185,58 @@
       </div>
     </main>
 
-    <section id="overlay" class="overlay">
+    <section id="login-overlay" class="login-overlay">
       <div id="login-container" class="login-container">
         <h2 id="login-h2">로그인</h2>
+        <i id="login-close-icon" class="fas fa-times"></i>
+
         <form id="loginForm">
-          <input
-            type="text"
-            id="inputNickname"
-            placeholder="닉네임"
-            autofocus
-          />
+          <input type="email" id="inputEmail" placeholder="이메일" autofocus />
           <input type="password" id="inputPassword" placeholder="비밀번호" />
-          <button id="login-register-button">로그인</button>
+          <button id="login-btn">로그인</button>
         </form>
-        <button id="google-login-button">구글 계정으로 로그인</button>
+        <!-- <button id="google-login-button">구글 계정으로 로그인</button> -->
         <p id="errorMessage" style="display: none; color: red">
           잘못 입력하셨습니다.
         </p>
         <p id="login-p">아이디가 없으신가요?</p>
         <a id="signup-link">회원가입</a>
+      </div>
+    </section>
 
-        <i id="close-icon" class="fas fa-times"></i>
+    <section id="register-overlay" class="register-overlay">
+      <div id="register-container" class="login-container">
+        <h2 id="register-h2">회원가입</h2>
+        <i id="register-close-icon" class="fas fa-times"></i>
+
+        <form id="registerForm">
+          <input
+            type="email"
+            id="register-inputEmail"
+            placeholder="이메일"
+            autofocus
+          />
+          <input
+            type="password"
+            id="register-inputPassword"
+            placeholder="비밀번호"
+          />
+          <input type="text" id="register-inputname" placeholder="이름" />
+          <input type="text" id="register-inputGender" placeholder="성별" />
+          <input type="number" id="register-inputAge" placeholder="나이" />
+          <input
+            type="text"
+            id="register-inputIntroduce"
+            placeholder="한 줄 소개"
+          />
+          <button id="register-button">회원가입</button>
+        </form>
+        <!-- <button id="google-login-button">구글 계정으로 로그인</button> -->
+        <p id="register-errorMessage" style="display: none; color: red">
+          잘못 입력하셨습니다.
+        </p>
+        <p id="register-p">계정이 이미 있으신가요?</p>
+        <a id="login-link">로그인</a>
       </div>
     </section>
 

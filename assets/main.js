@@ -15,8 +15,9 @@ const userMenu = document.getElementById("user-menu");
 
 renderPosts();
 
-loginButton.addEventListener("click", () => {
-  overlay.style.display = "flex";
+// 로그인 버튼 클릭 시 login-overlay 표시
+loginButton.addEventListener('click', () => {
+  loginOverlay.style.display = 'flex';
 });
 
 closeIcon.addEventListener("click", () => {
@@ -69,5 +70,40 @@ userMenuButton.addEventListener("click", () => {
     userMenu.style.display = "block";
   } else {
     userMenu.style.display = "none";
+registerForm.addEventListener('submit', async (event) => {
+  event.preventDefault(); // 폼 제출 기본 동작 방지
+
+  const email = document.getElementById('register-inputEmail').value;
+  const password = document.getElementById('register-inputPassword').value;
+  const nickname = document.getElementById('register-inputname').value;
+  const age = document.getElementById('register-inputAge').value;
+  const gender = document.getElementById('register-inputGender').value;
+  const introduce = document.getElementById('register-inputIntroduce').value;
+
+  try {
+    const response = await fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        nickname,
+        age,
+        gender,
+        introduce,
+      }),
+    });
+
+    if (response.ok) {
+      alert('회원가입이 완료되었습니다.'); // 성공 메시지 표시
+      registerOverlay.style.display = 'none'; // 회원가입 창 닫기
+    } else {
+      const data = await response.json();
+      alert(data.message); // 실패 메시지 표시
+    }
+  } catch (error) {
+    console.error('Error:', error);
   }
 });
