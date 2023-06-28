@@ -1,5 +1,3 @@
-import { renderPosts } from "./modules/GET-posts.js";
-
 const signupLink = document.getElementById("signup-link");
 const registerOverlay = document.getElementById("register-overlay");
 const loginButton = document.getElementById("login-button");
@@ -9,8 +7,6 @@ const closeLoginIcon = document.getElementById("login-close-icon");
 const closeRegisterIcon = document.getElementById("register-close-icon");
 const registerForm = document.getElementById("register-form");
 const loginForm = document.getElementById("login-form");
-
-renderPosts();
 
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener("click", () => {

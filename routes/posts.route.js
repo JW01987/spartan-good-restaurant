@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Posts } = require("../models");
+const { Posts, Users, UserInfos } = require("../models");
 const authMiddleware = require("../middlewares/auth-middleware.js");
 // 게시글 생성
 router.post("/posts", authMiddleware, async (req, res) => {
@@ -23,6 +23,18 @@ router.get("/posts", async (req, res) => {
     attributes: ["id", "userId", "title", "createdAt"],
     // 항목 필요 시 수정
     order: [["createdAt", "DESC"]],
+    include: [
+      {
+        model: Users,
+        attributes: ["id"],
+        include: [
+          {
+            model: UserInfos,
+            attributes: ["nickname"],
+          },
+        ],
+      },
+    ],
   });
 
   return res.status(200).json({ data: posts });

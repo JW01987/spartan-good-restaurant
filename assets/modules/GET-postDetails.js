@@ -1,4 +1,4 @@
-async function getPosts() {
+async function getpostsDetails() {
   let posts;
   const options = {
     method: "GET",
@@ -20,8 +20,8 @@ async function renderPosts() {
   let html = "";
 
   posts.map((post) => {
-    let htmlSegment = `<div class="item-2">
-  <a href="./detail.html?postId=${post.id}" class="card">
+    let htmlSegment = `<div class="item-1">
+  <a href="./detail.html" class="card">
     <div
       class="thumb"
       style="
@@ -30,7 +30,7 @@ async function renderPosts() {
     ></div>
     <article>
       <h1>${post.title}</h1>
-      <span>${post.User.UserInfo.nickname}</span>
+      <span>${post.content}</span>
     </article>
   </a>
 </div>
