@@ -38,7 +38,7 @@ closeRegisterIcon.addEventListener('click', () => {
   registerOverlay.style.display = 'none';
 });
 
-function showLoggedInUI() {
+function showLoggedInUI(nickname) {
   loginButton.style.display = 'none';
   userMenuButton.style.display = 'block';
   newPostButton.style.display = 'block';
@@ -118,7 +118,8 @@ loginForm.addEventListener('submit', async (event) => {
 
       if (profileResponse.ok) {
         const profileData = await profileResponse.json();
-        const { nickname } = profileData.data.UsersInfos;
+        console.log(profileData);
+        const { nickname } = profileData.data.UserInfo;
         showLoggedInUI(nickname); // 사용자 닉네임으로 UI 업데이트
       } else {
         alert('프로필을 불러올 수 없습니다.'); // 실패 메시지 표시
