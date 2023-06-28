@@ -3,5 +3,5 @@ module.exports = {
   postRouter: require("./posts.route"),
   usersRouter: require("./users.route"),
   authRouter: require("./auth"),
-  userInfoRouter: require("./userInfos.route"),
+  userInfosRouter: require("./userInfos.route"),
 };
