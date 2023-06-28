@@ -9,11 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Users, {
+        targetKey: "id",
+        foreignKey: "userId",
+      });
+      this.hasMany(models.Comments, {
+        sourceKey: "id",
+        foreignKey: "postId",
+      });
     }
   }
   Posts.init(
     {
-      postId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

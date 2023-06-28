@@ -9,11 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Users, {
+        targetKey: "id",
+        foreignKey: "userId",
+      });
     }
   }
   UserInfos.init(
     {
-      infoId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
