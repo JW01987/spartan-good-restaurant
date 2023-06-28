@@ -17,6 +17,29 @@ async function renderPosts() {
   /* 패치로 가져온 데이터를 찍는 과정 */
   let { data: posts } = await getPosts(); // 객체구조분해할당 방식으로 변수저장을 해줘야한다. getMovie()로 가져온 데이터는 배열이기 때문에 객체로 변환
   console.log(posts); // movies 라는 객체를 받아서 화면에 출력하는 함수
+  let html = "";
+
+  posts.map((post) => {
+    let htmlSegment = `<div class="item-2">
+  <a href="./detail.html?postId=${id}" class="card">
+    <div
+      class="thumb"
+      style="
+        background-image: url(https://p4.wallpaperbetter.com/wallpaper/416/643/695/cybergirls-cyberpunk-cyber-city-cyber-hd-wallpaper-preview.jpg);
+      "
+    ></div>
+    <article>
+      <h1>${post.title}</h1>
+      <span>${post.User.UserInfo.nickname}</span>
+    </article>
+  </a>
+</div>
+`;
+    html += htmlSegment;
+  });
+
+  let container = document.querySelector(".band");
+  container.innerHTML = html;
 }
 
 export { renderPosts };
