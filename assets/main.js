@@ -46,6 +46,58 @@ function showLoggedInUI(nickname) {
   nicknameButton.textContent = nickname;
 }
 
+function showLoggedOutUI() {
+  loginButton.style.display = 'block';
+  userMenuButton.style.display = 'none';
+  newPostButton.style.display = 'none';
+  nicknameButton.style.display = 'none';
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.trim().split('=');
+    if (cookieName === name) {
+      return decodeURIComponent(cookieValue);
+    }
+  }
+
+  return '';
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  {
+    const authorization = getCookie('authorization');
+
+    if (authorization) {
+      try {
+        const profileResponse = await fetch('/api/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: authorization,
+          },
+        });
+
+        if (profileResponse.ok) {
+          const profileData = await profileResponse.json();
+          const { nickname } = profileData.data.UserInfo;
+          showLoggedInUI(nickname);
+        } else {
+          // 실패 시 로그인 버튼으로 유지
+          showLoggedOutUI();
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    } else {
+      // 인증 토큰이 없는 경우 로그인 버튼으로 유지
+      showLoggedOutUI();
+    }
+  }
+});
+
 registerForm.addEventListener('submit', async (event) => {
   event.preventDefault(); // 폼 제출 기본 동작 방지
 
