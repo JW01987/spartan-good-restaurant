@@ -11,6 +11,15 @@ const newPostButton = document.getElementById('new-post-button');
 const nicknameButton = document.getElementById('nickname-button');
 const userMenuButton = document.getElementById('user-menu-button');
 
+// 페이지 로드 시 로그인 상태 확인
+window.addEventListener('DOMContentLoaded', () => {
+  const storedAuthorization = localStorage.getItem('authorization');
+  if (storedAuthorization) {
+    // 로그인 상태일 경우 UI 업데이트
+    showLoggedInUI();
+  }
+});
+
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener('click', () => {
   loginOverlay.style.display = 'flex';
