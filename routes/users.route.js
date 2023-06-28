@@ -1,21 +1,21 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { Users, UserInfos } = require("../models"); //새로적은코드
+const { Users, UserInfos } = require('../models'); //새로적은코드
 
-//회원가입//
-router.post("/users", async (req, res) => {
+// 회원가입
+router.post('/users', async (req, res) => {
   const { email, password, nickname, age, gender, introduce } = req.body;
   const isExistUser = await Users.findOne({
     where: {
       email: email,
     },
   });
-  //email 과 동일한 유저가 실제로 존재할때 에러발생
+  // email과 동일한 유저가 실제로 존재할 때 에러 발생
   if (isExistUser) {
-    return res.status(409).json({ message: "이미 존재하는 이메일입니다." });
+    return res.status(409).json({ message: '이미 존재하는 이메일입니다.' });
   }
 
-  // 사용자 테이블에 데이터삽입
+  // 사용자 테이블에 데이터 삽입
   const user = await Users.create({ email, password });
   // 사용자 정보 테이블에 데이터 삽입
   const userInfo = await UserInfos.create({
@@ -26,7 +26,7 @@ router.post("/users", async (req, res) => {
     introduce,
   });
 
-  return res.status(201).json({ message: "회원가입이 완료되었습니다." });
+  return res.status(201).json({ message: '회원가입이 완료되었습니다.' });
 });
 
 module.exports = router;
