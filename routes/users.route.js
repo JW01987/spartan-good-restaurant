@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Users, UserInfos } = require("../models"); 
+const { Users, UserInfos } = require("../models"); //새로적은코드
 
 //회원가입//
 router.post("/users", async (req, res) => {
@@ -18,8 +18,8 @@ router.post("/users", async (req, res) => {
   // 사용자 테이블에 데이터삽입
   const user = await Users.create({ email, password });
   // 사용자 정보 테이블에 데이터 삽입
-  await UserInfos.create({
-    UserId: user.userId, //현재 사용자 정보가 19번째 줄에서 생성된 사용자의 userId를 할당합니다
+  const userInfo = await UserInfos.create({
+    userId: user.id, //현재 사용자 정보가 19번째 줄에서 생성된 사용자의 userId를 할당합니다
     nickname,
     age,
     gender,
