@@ -10,6 +10,7 @@ const {
   authRouter,
 } = require('./routes');
 
+app.use(express.static('assets'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -18,8 +19,8 @@ app.use('/api', [
   postRouter,
   commentRouter,
   usersRouter,
-  authRouter,
   userInfoRouter,
+  authRouter,
 ]);
 
 app.listen(port, () => {

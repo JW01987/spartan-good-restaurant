@@ -57,6 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "UserInfos",
+      //modelName: "User-Infos", << 불러올때  await User-Infos로 불러와야 했어서 오류
     }
   );
   return UserInfos;
