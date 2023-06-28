@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken"); //확인받기
-const { Users } = require("../models"); //확인받기
+const jwt = require("jsonwebtoken"); 
+const { Users } = require("../models"); 
 
 // 로그인//
 router.post("/login", async (req, res) => {

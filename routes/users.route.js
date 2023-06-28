@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Users, UserInfos } = require("../models"); //새로적은코드
+const { Users, UserInfos } = require("../models"); 
 
 //회원가입//
 router.post("/users", async (req, res) => {
