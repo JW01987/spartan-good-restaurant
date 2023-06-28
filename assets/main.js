@@ -7,6 +7,9 @@ const closeLoginIcon = document.getElementById('login-close-icon');
 const closeRegisterIcon = document.getElementById('register-close-icon');
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
+const newPostButton = document.getElementById('new-post-button');
+const nicknameButton = document.getElementById('nickname-button');
+const userMenuButton = document.getElementById('user-menu-button');
 
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener('click', () => {
@@ -33,6 +36,66 @@ closeLoginIcon.addEventListener('click', () => {
 // 회원가입 창 닫기
 closeRegisterIcon.addEventListener('click', () => {
   registerOverlay.style.display = 'none';
+});
+
+function showLoggedInUI(nickname) {
+  loginButton.style.display = 'none';
+  userMenuButton.style.display = 'block';
+  newPostButton.style.display = 'block';
+  nicknameButton.style.display = 'block';
+  nicknameButton.textContent = nickname;
+}
+
+function showLoggedOutUI() {
+  loginButton.style.display = 'block';
+  userMenuButton.style.display = 'none';
+  newPostButton.style.display = 'none';
+  nicknameButton.style.display = 'none';
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.trim().split('=');
+    if (cookieName === name) {
+      return decodeURIComponent(cookieValue);
+    }
+  }
+
+  return '';
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  {
+    const authorization = getCookie('authorization');
+
+    if (authorization) {
+      try {
+        const profileResponse = await fetch('/api/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: authorization,
+          },
+        });
+
+        if (profileResponse.ok) {
+          const profileData = await profileResponse.json();
+          const { nickname } = profileData.data.UserInfo;
+          showLoggedInUI(nickname);
+        } else {
+          // 실패 시 로그인 버튼으로 유지
+          showLoggedOutUI();
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    } else {
+      // 인증 토큰이 없는 경우 로그인 버튼으로 유지
+      showLoggedOutUI();
+    }
+  }
 });
 
 registerForm.addEventListener('submit', async (event) => {
@@ -94,6 +157,25 @@ loginForm.addEventListener('submit', async (event) => {
     if (response.ok) {
       alert('로그인이 완료되었습니다.'); // 성공 메시지 표시
       loginOverlay.style.display = 'none'; // 로그인 창 닫기
+
+      // 사용자 프로필 정보를 가져오기 위해 API 요청을 수행합니다.
+      const profileResponse = await fetch('/api/profile', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log(profileResponse);
+
+      if (profileResponse.ok) {
+        const profileData = await profileResponse.json();
+        console.log(profileData);
+        const { nickname } = profileData.data.UserInfo;
+        showLoggedInUI(nickname); // 사용자 닉네임으로 UI 업데이트
+      } else {
+        alert('프로필을 불러올 수 없습니다.'); // 실패 메시지 표시
+      }
     } else {
       const data = await response.json();
       alert(data.message); // 실패 메시지 표시

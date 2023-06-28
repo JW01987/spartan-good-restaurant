@@ -1,24 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middlewares/auth-middleware");
-const { UsersInfos, Users } = require("../models");
+const { UserInfos, Users } = require("../models");
 
 //프로필 보기
 router.get("/profile", authMiddleware, async (req, res) => {
   const { id } = res.locals.user;
+  console.log("아이디입니다:" + id);
   try {
     const user = await Users.findOne({
       where: { id },
       attributes: ["email", "createdAt", "updatedAt"],
       include: [
         {
-          model: UsersInfos,
+          model: UserInfos,
           attributes: ["nickname", "age", "gender", "introduce"],
         },
       ],
     });
     return res.status(201).json({ data: user });
-  } catch {
+  } catch (err) {
+    console.log(err);
     return res.status(400).json({ errorMessage: "불러오기에 실패하였습니다." });
   }
 });
@@ -27,7 +29,7 @@ router.put("/profile", authMiddleware, async (req, res) => {
   const { nickname, introduce, password } = req.body;
   const { id } = res.locals.user;
   try {
-    const user = await UsersInfos.findOne({ where: { userId: id } });
+    const user = await UserInfos.findOne({ where: { userId: id } });
 
     if (nickname) {
       user.nickname = nickname;
@@ -42,7 +44,8 @@ router.put("/profile", authMiddleware, async (req, res) => {
     await user.save();
 
     return res.status(200).json({ message: "정보를  수정하였습니다." });
-  } catch {
+  } catch (err) {
+    console.lor(err);
     return res.status(400).json({ errorMessage: "수정에 실패하였습니다." });
   }
 });

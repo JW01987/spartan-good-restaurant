@@ -251,6 +251,13 @@ header {
   justify-content: space-between;
 }
 
+#search-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #home-button {
   font-size: 1.5rem;
   border-style: none;
@@ -270,6 +277,41 @@ header {
 #search-login > i {
   margin-right: 1rem;
   font-size: 1.3rem;
+}
+
+/* login-header */
+
+#user-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#new-post-button {
+  border-radius: 3rem;
+  border-style: none;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #212529;
+  color: #ffff;
+  font-weight: bold;
+}
+
+#nickname-button {
+  border-radius: 3rem;
+  border-style: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  background-color: #212529;
+  color: #ffff;
+  font-weight: bold;
+}
+
+#user-menu-button {
+  border-style: none;
+  background-color: #f5f7f8;
 }
 
 /* userInfo */

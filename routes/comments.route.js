@@ -79,7 +79,8 @@ router.put(
           .status(403)
           .json({ errorMessage: "댓글의 수정 권한이 존재하지 않습니다." });
       }
-    } catch {
+    } catch (err) {
+      console.lor(err);
       return res
         .status(404)
         .json({ errorMessage: "댓글이 존재하지 않습니다." });
@@ -89,17 +90,15 @@ router.put(
         { content }, // title과 content 컬럼을 수정합니다.
         {
           where: {
-            [Op.and]: [{ id: commentId }, { userId }, { postId }],
+            [Op.and]: [{ id: commentId }, { userId: id }, { postId }],
           },
         }
       );
       res.status(200).json({ message: "댓글이 수정되었습니다." });
-    } catch {
-      res
-        .status(400)
-        .json({ errorMessage: "댓글 수정이 정상적으로 처리되지 않았습니다." });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ errorMessage: "댓글 수정이 실패되었습니다." });
     }
-    res.status(400).json({ errorMessage: "댓글 수정에 실패하였습니다." });
   }
 );
 
@@ -119,7 +118,8 @@ router.delete(
           .status(403)
           .json({ errorMessage: "댓글의 삭제 권한이 존재하지 않습니다." });
       }
-    } catch {
+    } catch (err) {
+      console.lor(err);
       return res
         .status(404)
         .json({ errorMessage: "댓글 삭제가 정상적으로 처리되지 않았습니다." });
@@ -131,7 +131,8 @@ router.delete(
         },
       });
       res.status(200).json({ message: "댓글이 삭제되었습니다." });
-    } catch {
+    } catch (err) {
+      console.lor(err);
       res.status(400).json({ errorMessage: " 댓글 삭제에 실패하였습니다." });
     }
   }
