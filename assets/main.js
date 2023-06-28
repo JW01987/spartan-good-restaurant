@@ -222,3 +222,9 @@ logoutButton.addEventListener('click', async () => {
       });
   }
 });
+
+const userInfoButton = document.getElementById('user-info');
+
+userInfoButton.addEventListener('click', async () => {
+  window.location.replace('./userInfo.html');
+});
