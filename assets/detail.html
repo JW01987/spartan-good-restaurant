@@ -9,39 +9,67 @@
     ></script>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <title>Document</title>
+    <link rel="stylesheet" href="./detail.css" />
   </head>
   <body>
-    <header>
-      <div class="head">
-        <div id="home">
-          <button id="home-button" style="cursor: pointer">matlog</button>
-        </div>
-        <div id="search-login">
-          <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
-          <button id="login-button" style="cursor: pointer">로그인</button>
-          <!-- 추가: 새글 작성 버튼 -->
-          <button id="new-post-button" style="cursor: pointer; display: none">
-            새글 작성
-          </button>
-          <!-- 추가: 사용자 정보 -->
-          <button
-            id="nickname-button"
-            style="cursor: pointer; display: none"
-          ></button>
-          <!-- 추가: 사용자 메뉴 -->
-          <button id="user-menu-button" style="cursor: pointer; display: none">
-            <i class="fas fa-caret-down"></i>
-          </button>
-          <div id="user-menu" style="display: none">
-            <ul>
-              <li>사용자 글</li>
-              <li>사용자 정보</li>
-              <li>로그아웃</li>
-            </ul>
-          </div>
+    <div class="head">
+      <div id="home">
+        <button id="home-button" style="cursor: pointer">matlog</button>
+      </div>
+      <div id="search-login">
+        <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
+        <button id="login-button" style="cursor: pointer">로그인</button>
+        <!-- 추가: 새글 작성 버튼 -->
+        <button id="new-post-button" style="cursor: pointer; display: none">
+          새글 작성
+        </button>
+        <!-- 추가: 사용자 정보 -->
+        <button
+          id="nickname-button"
+          style="cursor: pointer; display: none"
+        ></button>
+        <!-- 추가: 사용자 메뉴 -->
+        <button id="user-menu-button" style="cursor: pointer; display: none">
+          <i class="fas fa-caret-down"></i>
+        </button>
+        <div id="user-menu" style="display: none">
+          <ul>
+            <li>사용자 글</li>
+            <li>사용자 정보</li>
+            <li>로그아웃</li>
+          </ul>
         </div>
       </div>
-    </header>
+    </div>
+    <div class="mybox" id="detail-list">
+      <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" />
+      <li><h1 class="detailPageTitle">${movie_detail.title}</h1></li>
+      <li><h2>✅original title : ${movie_detail.original_title}</h2></li>
+      <li><h3>${movie_detail['tagline']}</h3></li>
+      <li><h3>장르 : ${movie_detail.genres[0].name}</h3></li>
+      <li><h3>⏳상영시간 : ${movie_detail.runtime}분</h3></li>
+      <li><h3>⭐${movie_detail.vote_average}</h3></li>
+      <a href="${movie_detail.homepage}">🏠Home Page</a>
+      <p>개봉일 : ${movie_detail.release_date}</p>
+    </div>
+
+    <div class="review-box">
+      <div class="mybox">
+        <p><label for="">작성자</label><input type="text" class="writer" /></p>
+        <p>
+          <label for="">확인비밀번호</label
+          ><input type="text" class="password" />
+        </p>
+        <textarea
+          class="review-text"
+          name=""
+          id=""
+          cols="30"
+          rows="5"
+        ></textarea>
+        <button class="review-btn">리뷰 등록하기</button>
+      </div>
+    </div>
 
     <script src="main.js"></script>
   </body>
