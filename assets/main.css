@@ -131,9 +131,9 @@ h1 {
   margin: 2em 0 0 0;
 }
 
-/* login & register */
+/* login */
 
-.overlay {
+.login-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -150,7 +150,7 @@ h1 {
   padding: 20px;
   text-align: center;
   background-color: #fff;
-  position: relative; /* 추가 */
+  position: relative;
 }
 
 .login-container h2 {
@@ -172,15 +172,67 @@ h1 {
 }
 
 .login-container a {
-  color: blue; /* 링크 색상 설정 */
-  cursor: pointer; /* 커서 스타일 변경 */
+  color: blue;
+  cursor: pointer;
 }
 
-#close-icon {
-  position: absolute; /* 추가 */
-  top: 10px; /* 추가 */
-  right: 10px; /* 추가 */
-  cursor: pointer; /* 추가 */
+#close-login-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* register */
+
+.register-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  position: relative;
+}
+
+.register-container h2 {
+  margin-top: 0;
+}
+
+.register-container input[type='email'] {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.register-container button {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+
+.register-container p {
+  margin-bottom: 0;
+}
+
+.register-container a {
+  color: blue;
+  cursor: pointer;
+}
+
+#close-register-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
 /* header */
