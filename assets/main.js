@@ -1,3 +1,5 @@
+import { renderPosts } from "./modules/render.js";
+
 const loginButton = document.getElementById("login-button");
 const overlay = document.getElementById("overlay");
 const loginContainer = document.getElementById("login-container");
@@ -10,10 +12,8 @@ const nicknameButton = document.getElementById("nickname-button");
 const newPostButton = document.getElementById("new-post-button");
 const userMenuButton = document.getElementById("user-menu-button");
 const userMenu = document.getElementById("user-menu");
-import { renderMovies, getMovies } from "./modules/render.js";
 
-console.log(getMovies());
-renderMovies();
+renderPosts();
 
 loginButton.addEventListener("click", () => {
   overlay.style.display = "flex";
