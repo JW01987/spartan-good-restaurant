@@ -1,3 +1,5 @@
+import { renderPosts } from './modules/GET-posts.js';
+
 const signupLink = document.getElementById('signup-link');
 const registerOverlay = document.getElementById('register-overlay');
 const loginButton = document.getElementById('login-button');
@@ -11,6 +13,8 @@ const newPostButton = document.getElementById('new-post-button');
 const nicknameButton = document.getElementById('nickname-button');
 const userMenuButton = document.getElementById('user-menu-button');
 const userMenuUI = document.getElementById('user-menu');
+
+renderPosts();
 
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener('click', () => {
@@ -187,10 +191,9 @@ loginForm.addEventListener('submit', async (event) => {
   }
 });
 
-const userMenu = document.getElementById('user-menu');
-
 userMenuButton.addEventListener('click', () => {
-  userMenu.style.display = userMenu.style.display === 'none' ? 'block' : 'none';
+  userMenuUI.style.display =
+    userMenuUI.style.display === 'none' ? 'block' : 'none';
 });
 
 const logoutButton = document.getElementById('logout-button');
