@@ -1,4 +1,4 @@
-import { renderPosts } from "./modules/render.js";
+import { renderPosts } from "./modules/GET-posts.js";
 
 const loginButton = document.getElementById("login-button");
 const overlay = document.getElementById("overlay");
