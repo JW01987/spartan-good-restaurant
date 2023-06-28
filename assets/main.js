@@ -5,6 +5,7 @@ const loginOverlay = document.getElementById('login-overlay');
 const loginLink = document.getElementById('login-link');
 const closeLoginIcon = document.getElementById('login-close-icon');
 const closeRegisterIcon = document.getElementById('register-close-icon');
+const registerForm = document.getElementById('register-form');
 
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener('click', () => {
@@ -44,7 +45,7 @@ registerForm.addEventListener('submit', async (event) => {
   const introduce = document.getElementById('register-inputIntroduce').value;
 
   try {
-    const response = await fetch('/users', {
+    const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -67,6 +68,6 @@ registerForm.addEventListener('submit', async (event) => {
       alert(data.message); // 실패 메시지 표시
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error:', error.message);
   }
 });
