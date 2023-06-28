@@ -1,15 +1,21 @@
 const express = require("express");
 const router = express.Router();
-//const authMiddleware = require("");
-const { UsersInfos } = require("../models");
+const authMiddleware = require("../middlewares/auth-middleware");
+const { UsersInfos, Users } = require("../models");
 
 //프로필 보기
-router.get("/profile", async (req, res) => {
+router.get("/profile", authMiddleware, async (req, res) => {
   const { userId } = res.locals.user;
   try {
-    const user = await UsersInfos.findOne({
-      attributes: ["introduce", "nickname"],
+    const user = await Users.findOne({
       where: { userId },
+      attributes: ["email", "createdAt", "updatedAt"],
+      include: [
+        {
+          model: UsersInfos,
+          attributes: ["nickname", "age", "gender", "introduce"],
+        },
+      ],
     });
     return res.status(201).json({ data: user });
   } catch {
@@ -17,7 +23,7 @@ router.get("/profile", async (req, res) => {
   }
 });
 //프로필 수정
-router.put("/profile", async (req, res) => {
+router.put("/profile", authMiddleware, async (req, res) => {
   const { nickname, introduce, password } = req.body;
   const { userId } = res.locals.user;
   try {
