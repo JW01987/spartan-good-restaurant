@@ -314,6 +314,33 @@ header {
   background-color: #f5f7f8;
 }
 
+#user-menu-button {
+  position: relative;
+}
+
+#user-menu {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+#user-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#user-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#user-menu li:hover {
+  background-color: #f5f7f8;
+}
+
 /* userInfo */
 
 .user-info {
