@@ -7,6 +7,9 @@ const closeLoginIcon = document.getElementById('login-close-icon');
 const closeRegisterIcon = document.getElementById('register-close-icon');
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
+const newPostButton = document.getElementById('new-post-button');
+const nicknameButton = document.getElementById('nickname-button');
+const userMenuButton = document.getElementById('user-menu-button');
 
 // 로그인 버튼 클릭 시 login-overlay 표시
 loginButton.addEventListener('click', () => {
@@ -34,6 +37,14 @@ closeLoginIcon.addEventListener('click', () => {
 closeRegisterIcon.addEventListener('click', () => {
   registerOverlay.style.display = 'none';
 });
+
+function showLoggedInUI() {
+  loginButton.style.display = 'none';
+  userMenuButton.style.display = 'block';
+  newPostButton.style.display = 'block';
+  nicknameButton.style.display = 'block';
+  nicknameButton.textContent = nickname;
+}
 
 registerForm.addEventListener('submit', async (event) => {
   event.preventDefault(); // 폼 제출 기본 동작 방지
@@ -94,6 +105,24 @@ loginForm.addEventListener('submit', async (event) => {
     if (response.ok) {
       alert('로그인이 완료되었습니다.'); // 성공 메시지 표시
       loginOverlay.style.display = 'none'; // 로그인 창 닫기
+
+      // 사용자 프로필 정보를 가져오기 위해 API 요청을 수행합니다.
+      const profileResponse = await fetch('/api/profile', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log(profileResponse);
+
+      if (profileResponse.ok) {
+        const profileData = await profileResponse.json();
+        const { nickname } = profileData.data.UsersInfos;
+        showLoggedInUI(nickname); // 사용자 닉네임으로 UI 업데이트
+      } else {
+        alert('프로필을 불러올 수 없습니다.'); // 실패 메시지 표시
+      }
     } else {
       const data = await response.json();
       alert(data.message); // 실패 메시지 표시
