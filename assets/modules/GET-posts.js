@@ -21,7 +21,7 @@ async function renderPosts() {
 
   posts.map((post) => {
     let htmlSegment = `<div class="item-2">
-  <a href="./detail.html?postId=${post.id}" class="card">
+  <a href="./detail.html?postId=${id}" class="card">
     <div
       class="thumb"
       style="

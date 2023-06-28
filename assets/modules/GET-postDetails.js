@@ -1,10 +1,12 @@
-async function getpostsDetails() {
+async function getPostDetails() {
   let posts;
+  let urlPostId = new URL(location.href).searchParams;
+  let postId = urlPostId.get("postId");
   const options = {
     method: "GET",
   };
   try {
-    posts = await fetch(`/api/posts`, options);
+    posts = await fetch(`/api/posts/${postId}`, options);
     // console.log(movies);
     // 패치로 가져온 데이터를 movies에 할당
   } catch (error) {
@@ -13,33 +15,21 @@ async function getpostsDetails() {
   return posts.json(); // 받은 데이터를 json 형식으로 반환
 }
 
-async function renderPosts() {
+async function renderPostDetails() {
   /* 패치로 가져온 데이터를 찍는 과정 */
-  let { data: posts } = await getPosts(); // 객체구조분해할당 방식으로 변수저장을 해줘야한다. getMovie()로 가져온 데이터는 배열이기 때문에 객체로 변환
+  let { data: posts } = await getPostDetails(); // 객체구조분해할당 방식으로 변수저장을 해줘야한다. getMovie()로 가져온 데이터는 배열이기 때문에 객체로 변환
   console.log(posts); // movies 라는 객체를 받아서 화면에 출력하는 함수
   let html = "";
 
-  posts.map((post) => {
-    let htmlSegment = `<div class="item-1">
-  <a href="./detail.html" class="card">
-    <div
-      class="thumb"
-      style="
-        background-image: url(https://p4.wallpaperbetter.com/wallpaper/416/643/695/cybergirls-cyberpunk-cyber-city-cyber-hd-wallpaper-preview.jpg);
-      "
-    ></div>
-    <article>
-      <h1>${post.title}</h1>
-      <span>${post.content}</span>
-    </article>
-  </a>
-</div>
-`;
-    html += htmlSegment;
-  });
+  html = `<img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" />
+  <h1 class="detailPageTitle">${posts.title}</h1>
+  <h2>${posts.User.UserInfo.nickname}</h2>
+  <p>
+    ${posts.content}
+  </p>`;
 
-  let container = document.querySelector(".band");
+  let container = document.querySelector("#detail-list");
   container.innerHTML = html;
 }
 
-export { renderPosts };
+export { renderPostDetails };

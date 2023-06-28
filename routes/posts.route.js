@@ -22,7 +22,7 @@ router.get("/posts", async (req, res) => {
   const posts = await Posts.findAll({
     attributes: ["id", "userId", "title", "createdAt"],
     // 항목 필요 시 수정
-    order: [["createdAt", "DESC"]],
+    order: [["createdAt", "ASC"]],
     include: [
       {
         model: Users,
@@ -46,6 +46,18 @@ router.get("/posts/:postId", async (req, res) => {
   const post = await Posts.findOne({
     attributes: ["id", "userId", "title", "content", "createdAt", "updatedAt"],
     where: { id: postId },
+    include: [
+      {
+        model: Users,
+        attributes: ["id"],
+        include: [
+          {
+            model: UserInfos,
+            attributes: ["nickname"],
+          },
+        ],
+      },
+    ],
   });
 
   return res.status(200).json({ data: post });
