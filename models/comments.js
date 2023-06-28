@@ -10,18 +10,18 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Users, {
-        targetKey: "userId",
+        targetKey: "id",
         foreignKey: "userId",
       });
       this.belongsTo(models.Posts, {
-        targetKey: "postId",
+        targetKey: "id",
         foreignKey: "postId",
       });
     }
   }
   Comments.init(
     {
-      commentId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

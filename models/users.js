@@ -9,22 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasOne(models.UserInfos, {
-        sourceKey: "userId",
+        sourceKey: "id",
         foreignKey: "userId",
       });
       this.hasMany(models.Posts, {
-        sourceKey: "userId",
+        sourceKey: "id",
         foreignKey: "userId",
       });
       this.hasMany(models.Comments, {
-        sourceKey: "userId",
+        sourceKey: "id",
         foreignKey: "userId",
       });
     }
   }
   Users.init(
     {
-      userId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -37,10 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING,
-      },
-      token: {
-        allowNull: true,
         type: DataTypes.STRING,
       },
       createdAt: {
