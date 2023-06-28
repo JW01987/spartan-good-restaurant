@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middlewares/auth-middleware");
 const { UserInfos, Users } = require("../models");
+//암호화
+const CryptoJS = require("crypto-js");
+const PRIVATE_KEY = "secret key";
 
 //프로필 보기
 router.get("/profile", authMiddleware, async (req, res) => {
@@ -26,22 +29,14 @@ router.get("/profile", authMiddleware, async (req, res) => {
 });
 //프로필 수정
 router.put("/profile", authMiddleware, async (req, res) => {
-  const { nickname, introduce, password } = req.body;
+  const { email, password, nickname, age, gender, introduce } = req.body;
   const { id } = res.locals.user;
   try {
-    const user = await UserInfos.findOne({ where: { userId: id } });
-
-    if (nickname) {
-      user.nickname = nickname;
-    }
-    if (introduce) {
-      user.introduce = introduce;
-    }
-    if (password) {
-      user.password = password;
-    }
-
-    await user.save();
+    await Users.update({ email, password }, { where: { id } });
+    await UserInfos.update(
+      { nickname, age, gender, introduce },
+      { where: { userId: id } }
+    );
 
     return res.status(200).json({ message: "정보를  수정하였습니다." });
   } catch (err) {
