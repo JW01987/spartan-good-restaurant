@@ -5,10 +5,10 @@ const { UsersInfos, Users } = require("../models");
 
 //프로필 보기
 router.get("/profile", authMiddleware, async (req, res) => {
-  const { userId } = res.locals.user;
+  const { id } = res.locals.user;
   try {
     const user = await Users.findOne({
-      where: { userId },
+      where: { id },
       attributes: ["email", "createdAt", "updatedAt"],
       include: [
         {
@@ -25,9 +25,9 @@ router.get("/profile", authMiddleware, async (req, res) => {
 //프로필 수정
 router.put("/profile", authMiddleware, async (req, res) => {
   const { nickname, introduce, password } = req.body;
-  const { userId } = res.locals.user;
+  const { id } = res.locals.user;
   try {
-    const user = await UsersInfos.findOne({ where: { userId } });
+    const user = await UsersInfos.findOne({ where: { userId: id } });
 
     if (nickname) {
       user.nickname = nickname;
@@ -46,4 +46,5 @@ router.put("/profile", authMiddleware, async (req, res) => {
     return res.status(400).json({ errorMessage: "수정에 실패하였습니다." });
   }
 });
+
 module.exports = router;

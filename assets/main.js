@@ -68,6 +68,6 @@ registerForm.addEventListener('submit', async (event) => {
       alert(data.message); // 실패 메시지 표시
     }
   } catch (error) {
-    console.error('Error:', error.message);
+    console.error('Error:', error);
   }
 });

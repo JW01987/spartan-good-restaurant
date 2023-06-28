@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken"); 
-const { Users } = require("../models"); 
+const jwt = require("jsonwebtoken");
+const { Users } = require("../models");
 
 // 로그인//
 router.post("/login", async (req, res) => {
@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
   //jwt를 생성
   const token = jwt.sign(
     {
-      userId: user.userId,
+      id: user.id,
     },
     "customized_secret_key"
   );

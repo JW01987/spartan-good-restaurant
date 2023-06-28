@@ -9,14 +9,14 @@ const { Op } = require("sequelize");
 router.post("/posts/:postId/comments", authMiddleware, async (req, res) => {
   const { postId } = req.params;
   const { content } = req.body;
-  const { userId } = res.locals.user;
+  const { id } = res.locals.user;
   if (!content.length) {
     return res
       .status(412)
       .json({ errorMessage: "데이터 형식이 올바르지 않습니다." });
   }
 
-  const postIdCheck = await Posts.findOne({ where: { postId } });
+  const postIdCheck = await Posts.findOne({ where: { id: postId } });
   if (!postIdCheck) {
     return res
       .status(404)
@@ -26,7 +26,7 @@ router.post("/posts/:postId/comments", authMiddleware, async (req, res) => {
     await Comments.create({
       postId,
       content,
-      userId,
+      userId: id,
     });
   } catch {
     return res
@@ -60,21 +60,21 @@ router.put(
   async (req, res) => {
     const { postId, commentId } = req.params;
     const { content } = req.body;
-    const { userId } = res.locals.user;
+    const { id } = res.locals.user;
     if (!content.length) {
       return res
         .status(412)
         .json({ errorMessage: "데이터 형식이 올바르지 않습니다." });
     }
-    const postIdCheck = await Posts.findOne({ where: { postId } });
+    const postIdCheck = await Posts.findOne({ where: { id: postId } });
     if (!postIdCheck) {
       return res
         .status(404)
         .json({ errorMessage: "게시글이 존재하지 않습니다." });
     }
     try {
-      const comment = await Comments.findOne({ where: { commentId } });
-      if (comment.userId !== userId) {
+      const comment = await Comments.findOne({ where: { id: commentId } });
+      if (comment.userId !== id) {
         return res
           .status(403)
           .json({ errorMessage: "댓글의 수정 권한이 존재하지 않습니다." });
@@ -89,7 +89,7 @@ router.put(
         { content }, // title과 content 컬럼을 수정합니다.
         {
           where: {
-            [Op.and]: [{ commentId }, { userId }, { postId }],
+            [Op.and]: [{ id: commentId }, { userId }, { postId }],
           },
         }
       );
@@ -109,10 +109,12 @@ router.delete(
   authMiddleware,
   async (req, res) => {
     const { postId, commentId } = req.params;
-    const { userId } = res.locals.user;
+    const { id } = res.locals.user;
     try {
-      const comment = await Comments.findOne({ where: { commentId, postId } });
-      if (comment.userId !== userId) {
+      const comment = await Comments.findOne({
+        where: { id: commentId, postId },
+      });
+      if (comment.userId !== id) {
         return res
           .status(403)
           .json({ errorMessage: "댓글의 삭제 권한이 존재하지 않습니다." });
@@ -125,7 +127,7 @@ router.delete(
     try {
       await Comments.destroy({
         where: {
-          [Op.and]: [{ commentId }],
+          [Op.and]: [{ id: commentId }],
         },
       });
       res.status(200).json({ message: "댓글이 삭제되었습니다." });
