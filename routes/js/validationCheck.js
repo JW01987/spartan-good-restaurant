@@ -7,7 +7,6 @@ function passwordCheck(password) {
     space.test(password) ||
     !pswRegExp.test(password)
   ) {
-    console.log("비밀번호 안맞은");
     return false;
   }
   return true;
@@ -15,10 +14,8 @@ function passwordCheck(password) {
 
 function emailCheck(email) {
   //이메일 영어, 숫자 -_. 의 특수문자 1개 이상  + @ + 영어, 숫자 -_. 의 특수문자 1개 이상 , 영어 2-3글자
-  let emailRegExp =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  let emailRegExp = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   if (email.length == 0 || space.test(email) || !emailRegExp.test(email)) {
-    console.log("메일이 안 맞으");
     return false;
   }
   return true;
