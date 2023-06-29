@@ -34,7 +34,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (profileResponse.ok) {
           const profileData = await profileResponse.json();
           console.log(profileData.data);
-          const { email, nickname, age, gender, introduce } = profileData.data;
+          const { email } = profileData.data;
+          const { nickname, age, gender, introduce } =
+            profileData.data.UserInfo;
           showUserInfo(email, nickname, age, gender, introduce);
           showLoggedInUI(nickname);
         } else {
