@@ -120,15 +120,11 @@ userInfoButton.addEventListener('click', async () => {
 });
 
 function showUserInfo(email, nickname, age, gender, introduce) {
-  const emailContent = document.querySelector('.user-info .email .content');
-  const nicknameContent = document.querySelector(
-    '.user-info .nickname .content'
-  );
-  const ageContent = document.querySelector('.user-info .age .content');
-  const genderContent = document.querySelector('.user-info .gender .content');
-  const introduceContent = document.querySelector(
-    '.user-info .introduce .content'
-  );
+  const emailContent = document.querySelector('.user-info .email');
+  const nicknameContent = document.querySelector('.user-info .nickname');
+  const ageContent = document.querySelector('.user-info .age');
+  const genderContent = document.querySelector('.user-info .gender');
+  const introduceContent = document.querySelector('.user-info .introduce');
 
   emailContent.textContent = email;
   nicknameContent.textContent = nickname;
