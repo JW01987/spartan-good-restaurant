@@ -149,3 +149,7 @@ postForm.addEventListener('submit', async (data) => {
     alert('게시글 생성에 실패했습니다.');
   }
 });
+
+newPostButton.addEventListener('click', async () => {
+  window.location.replace('./Post.html');
+});
