@@ -1,68 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>matlog</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
     <script
       src="https://kit.fontawesome.com/550a0f2627.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./detail.css" />
   </head>
   <body>
-    <div class="head">
-      <div id="home">
-        <button id="home-button" style="cursor: pointer">matlog</button>
-      </div>
-      <div id="search-login">
-        <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
-        <button id="login-button" style="cursor: pointer">로그인</button>
-        <!-- 추가: 새글 작성 버튼 -->
-        <button id="new-post-button" style="cursor: pointer; display: none">
-          새글 작성
-        </button>
-        <!-- 추가: 사용자 정보 -->
-        <button
-          id="nickname-button"
-          style="cursor: pointer; display: none"
-        ></button>
-        <!-- 추가: 사용자 메뉴 -->
-        <button id="user-menu-button" style="cursor: pointer; display: none">
-          <i class="fas fa-caret-down"></i>
-        </button>
-        <div id="user-menu" style="display: none">
-          <ul>
-            <li>사용자 글</li>
-            <li>사용자 정보</li>
-            <li>로그아웃</li>
-          </ul>
+    <header>
+      <div class="head">
+        <div id="home">
+          <button id="home-button" style="cursor: pointer">matlog</button>
+        </div>
+        <div id="search-login">
+          <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
+          <div id="user-buttons">
+            <button id="login-button" style="cursor: pointer">로그인</button>
+            <!--  새글 작성 버튼 -->
+            <button id="new-post-button" style="cursor: pointer; display: none">
+              새 글 작성
+            </button>
+            <!-- 사용자 정보 -->
+            <button
+              id="nickname-button"
+              style="cursor: pointer; display: none"
+            ></button>
+            <!-- 사용자 메뉴 -->
+            <button
+              id="user-menu-button"
+              style="cursor: pointer; display: none"
+            >
+              <i class="fas fa-caret-down"></i>
+            </button>
+            <div id="user-menu">
+              <ul>
+                <li>사용자 글</li>
+                <li>사용자 정보</li>
+                <li id="logout-button">로그아웃</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="mybox" id="detail-list">
-      <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" />
-      <h1 class="detailPageTitle">제목</h1>
-      <h2>닉네임</h2>
-      <p>
-        본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문<br />
-      </p>
-    </div>
+    </header>
 
-    <div class="review-box">
-      <div class="mybox">
-        <p><label for="">작성자</label><input type="text" class="writer" /></p>
+    <main>
+      <div class="mybox" id="detail-list">
+        <img src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" />
+        <h1 class="detailPageTitle">제목</h1>
+        <h2>닉네임</h2>
         <p>
-          <label for="">확인비밀번호</label
-          ><input type="text" class="password" />
+          본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문<br />
         </p>
-        <textarea class="review-text" name="" id=""></textarea>
-        <!-- cols="30"
-          rows="5" -->
-        <button class="review-btn">리뷰 등록하기</button>
       </div>
-    </div>
+
+      <div class="comments-box">
+        <div class="mybox">
+          <textarea class="comments-text" name="" id="input-content"></textarea>
+          <button class="comments-btn" id="comments-btn">댓글쓰기</button>
+        </div>
+      </div>
+      <div class="comments-list"></div>
+    </main>
+
+    <section id="login-overlay" class="login-overlay">
+      <div id="login-container" class="login-container">
+        <h2 id="login-h2">로그인</h2>
+        <i id="login-close-icon" class="fas fa-times"></i>
+
+        <form id="login-form">
+          <input type="email" id="inputEmail" placeholder="이메일" autofocus />
+          <input type="password" id="inputPassword" placeholder="비밀번호" />
+          <button id="login-btn">로그인</button>
+        </form>
+        <!-- <button id="google-login-button">구글 계정으로 로그인</button> -->
+        <p id="errorMessage" style="display: none; color: red">
+          잘못 입력하셨습니다.
+        </p>
+        <p id="login-p">아이디가 없으신가요?</p>
+        <a id="signup-link">회원가입</a>
+      </div>
+    </section>
+
+    <section id="register-overlay" class="register-overlay">
+      <div id="register-container" class="login-container">
+        <h2 id="register-h2">회원가입</h2>
+        <i id="register-close-icon" class="fas fa-times"></i>
+
+        <form id="register-form">
+          <input
+            type="text"
+            id="register-inputEmail"
+            placeholder="이메일"
+            autofocus
+          />
+          <input
+            type="password"
+            id="register-inputPassword"
+            placeholder="비밀번호"
+          />
+          <input type="text" id="register-inputname" placeholder="이름" />
+          <input type="text" id="register-inputGender" placeholder="성별" />
+          <input type="number" id="register-inputAge" placeholder="나이" />
+          <input
+            type="text"
+            id="register-inputIntroduce"
+            placeholder="한 줄 소개"
+          />
+          <button id="register-button">회원가입</button>
+        </form>
+        <!-- <button id="google-login-button">구글 계정으로 로그인</button> -->
+        <p id="register-errorMessage" style="display: none; color: red">
+          잘못 입력하셨습니다.
+        </p>
+        <p id="register-p">계정이 이미 있으신가요?</p>
+        <a id="login-link">로그인</a>
+      </div>
+    </section>
 
     <script type="module" src="detail.js"></script>
   </body>

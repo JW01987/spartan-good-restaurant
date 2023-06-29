@@ -1,6 +1,6 @@
 html {
   background: #f5f7f8;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
@@ -157,7 +157,7 @@ h1 {
   margin-top: 0;
 }
 
-.login-container input[type='email'] {
+.login-container input[type="email"] {
   margin-bottom: 10px;
   padding: 5px;
 }
@@ -209,7 +209,7 @@ h1 {
   margin-top: 0;
 }
 
-.register-container input[type='email'] {
+.register-container input[type="email"] {
   margin-bottom: 10px;
   padding: 5px;
 }
@@ -251,6 +251,13 @@ header {
   justify-content: space-between;
 }
 
+#search-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #home-button {
   font-size: 1.5rem;
   border-style: none;
@@ -270,6 +277,68 @@ header {
 #search-login > i {
   margin-right: 1rem;
   font-size: 1.3rem;
+}
+
+/* login-header */
+
+#user-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#new-post-button {
+  border-radius: 3rem;
+  border-style: none;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #212529;
+  color: #ffff;
+  font-weight: bold;
+}
+
+#nickname-button {
+  border-radius: 3rem;
+  border-style: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  background-color: #212529;
+  color: #ffff;
+  font-weight: bold;
+}
+
+#user-menu-button {
+  border-style: none;
+  background-color: #f5f7f8;
+}
+
+#user-menu-button {
+  position: relative;
+}
+
+#user-menu {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+#user-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#user-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#user-menu li:hover {
+  background-color: #f5f7f8;
 }
 
 /* userInfo */
@@ -313,4 +382,190 @@ header {
 
 .wrapper-content {
   width: 40rem;
+}
+
+/* 여기부터 detail 페이지 */
+/* body {
+  background: url("https://miricanvas.zendesk.com/hc/article_attachments/900002143643/___________________5_.png")
+    center/cover no-repeat;
+  min-height: 100vh;
+} */
+
+.mybox {
+  background-color: whitesmoke;
+  width: 95%;
+  max-width: 1000px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 0px lightblue;
+  margin: 30px auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.mybox > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+  /* min-height: 48px; */
+}
+
+.mybox > li > h2 {
+  max-width: 75%;
+  font-size: 20px;
+  font-weight: 500;
+  /* margin-right: auto; */
+  margin-bottom: 0px;
+}
+
+.mybox > li > h2.done {
+  text-decoration: line-through;
+}
+.mybox > img {
+  border: 3px solid gold;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.homeButton {
+  width: 50px;
+
+  background-color: var(green);
+
+  border: none;
+
+  color: whitesmoke;
+
+  cursor: pointer;
+}
+
+.movie-card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
+  margin: 20px;
+  padding: 20px;
+  width: 300px;
+  justify-self: center;
+  background-color: bisque;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*대충 이것 저것 따라 해보고 구현된 모습 보면서 조정하기*/
+
+.detail-poster {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  padding-bottom: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.home-button {
+  width: 50px;
+
+  background-color: var(green);
+
+  border: none;
+
+  color: whitesmoke;
+
+  cursor: pointer;
+}
+
+.comment-section {
+  margin-top: 30px;
+}
+
+.comment-form {
+  border: 1px solid var(gray);
+  padding: 15px;
+}
+
+.comment-form input {
+  height: 35px;
+  border: none;
+  border-bottom: 1px solid var(gray);
+
+  outline: none;
+}
+
+.comment-user-box {
+  display: flex;
+  gap: 15px;
+}
+
+.comment-submit-box {
+  display: flex;
+  gap: 15px;
+
+  margin-top: 15px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-submit {
+  width: 50px;
+
+  background-color: var(green);
+
+  border: none;
+
+  color: whitesmoke;
+
+  cursor: pointer;
+}
+
+.comment-list {
+  margin-top: 30px;
+}
+
+.comment-item {
+  padding: 15px 0;
+}
+
+.comment-delete {
+  padding: 0;
+  border: none;
+
+  background-color: transparent;
+}
+
+/* 리뷰 관련 추가 */
+.review-list {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-content: center;
+  margin-left: 10px;
+  padding-left: 150px;
+}
+
+.review {
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 10px 0px lightblue;
+  width: 95%;
+  padding: 20px;
+  margin: 30px auto;
+  border-radius: 10px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.delete-Btn {
+  color: white;
+}
+
+.modify-Btn {
+  color: white;
 }
