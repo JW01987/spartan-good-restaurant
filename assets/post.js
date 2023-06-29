@@ -107,8 +107,8 @@ userInfoButton.addEventListener('click', async () => {
 
 const postForm = document.getElementById('post-form');
 
-postForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+postForm.addEventListener('submit', async (data) => {
+  data.preventDefault();
 
   const imageFile = document.getElementById('image').files[0];
   const title = document.getElementById('title').value;
@@ -119,8 +119,8 @@ postForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  const formData = new FormData();
-  formData.append('image', imageFile);
+  const formData = new FormData(); //서버로 전송하기 위해 폼데이터 객체 생성, 파일 처리 시 폼데이터가 편리
+  formData.append('image', imageFile); // 키-값 형태로 저장
   formData.append('title', title);
   formData.append('content', content);
 
@@ -131,20 +131,30 @@ postForm.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
+      // console.log(1, response);
       const responseData = await response.json();
+      // console.log(2, responseData);
       const { data: post } = responseData;
-      console.log('게시글 생성:', post);
+      // console.log(3, post);
+      // console.log('게시글 생성:', post);
       alert('게시글이 생성되었습니다.');
-      // 게시글이 성공적으로 생성되었을 때의 동작을 추가하세요.
+      window.location.reload();
     } else {
       const errorData = await response.json();
       console.error('게시글 생성 오류:', errorData);
       alert('게시글 생성에 실패했습니다.');
-      // 게시글 생성에 실패했을 때의 동작을 추가하세요.
     }
   } catch (error) {
     console.error('Error:', error);
     alert('게시글 생성에 실패했습니다.');
-    // 게시글 생성에 실패했을 때의 동작을 추가하세요.
   }
+});
+
+newPostButton.addEventListener('click', async () => {
+  window.location.replace('./Post.html');
+});
+
+const homeButton = document.getElementById('home-button');
+homeButton.addEventListener('click', async () => {
+  window.location.replace('./');
 });

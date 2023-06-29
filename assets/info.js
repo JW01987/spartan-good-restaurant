@@ -3,7 +3,6 @@ const newPostButton = document.getElementById('new-post-button');
 const nicknameButton = document.getElementById('nickname-button');
 const userMenuButton = document.getElementById('user-menu-button');
 const userMenuUI = document.getElementById('user-menu');
-
 const correctionButtons = document.querySelectorAll('.correction-button');
 correctionButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
@@ -35,9 +34,8 @@ window.addEventListener('DOMContentLoaded', async () => {
           const profileData = await profileResponse.json();
           console.log(profileData.data);
           const { email } = profileData.data;
-          const { nickname, age, gender, introduce } =
-            profileData.data.UserInfo;
-          showUserInfo(email, nickname, age, gender, introduce);
+          const { nickname, age, introduce } = profileData.data.UserInfo;
+          showUserInfo(email, nickname, age, introduce);
           showLoggedInUI(nickname);
         } else {
           // 실패 시 로그인 버튼으로 유지
@@ -121,16 +119,72 @@ userInfoButton.addEventListener('click', async () => {
   window.location.replace('./userInfo.html');
 });
 
-function showUserInfo(email, nickname, age, gender, introduce) {
+function showUserInfo(email, nickname, age, introduce) {
   const emailContent = document.querySelector('.user-info .email');
   const nicknameContent = document.querySelector('.user-info .nickname');
   const ageContent = document.querySelector('.user-info .age');
-  const genderContent = document.querySelector('.user-info .gender');
   const introduceContent = document.querySelector('.user-info .introduce');
-
   emailContent.textContent = email;
   nicknameContent.textContent = nickname;
   ageContent.textContent = age !== null ? String(age) : '';
-  genderContent.textContent = gender !== null ? String(gender) : '';
   introduceContent.textContent = introduce;
 }
+
+const editForm = document.querySelectorAll('.edit-form');
+
+editForm.forEach((form) => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const emailInput = document.querySelector('#email').value;
+    const nicknameInput = document.querySelector('#nickname').value;
+    const ageInput = document.querySelector('#age').value;
+    const introduceInput = document.querySelector('#introduce').value;
+    const pswInput = document.querySelector('#psw').value;
+    const confirmPswInput = document.querySelector('#confirmPsw').value;
+    let pswRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    let emailRegExp = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    let space = /\s/g;
+
+    if (isNaN(ageInput)) {
+      return alert('나이는 숫자를 입력하세요');
+    }
+    fetch('/api/profile', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: emailInput,
+        nickname: nicknameInput,
+        age: ageInput,
+        introduce: introduceInput,
+        password: pswInput,
+        confirmPassword: confirmPswInput,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.message) {
+          alert(data.message);
+          return location.reload();
+        } else if (data.errorMessage) {
+          return alert(data.errorMessage);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('수정 오류입니다.');
+      });
+  });
+});
+
+newPostButton.addEventListener('click', async () => {
+  window.location.replace('./Post.html');
+});
+
+const homeButton = document.getElementById('home-button');
+homeButton.addEventListener('click', async () => {
+  window.location.replace('./');
+});

@@ -8,7 +8,7 @@ const PRIVATE_KEY = "secret key";
 
 // 회원가입
 router.post("/users", async (req, res) => {
-  const { email, password, nickname, age, gender, introduce } = req.body;
+  const { email, password, nickname, age, introduce } = req.body;
   if (!emailCheck(email) || !passwordCheck(password)) {
     return res
       .status(401)
@@ -35,7 +35,6 @@ router.post("/users", async (req, res) => {
       userId: user.id,
       nickname,
       age,
-      gender,
       introduce,
     });
     return res.status(201).json({ message: "회원가입이 완료되었습니다." });
