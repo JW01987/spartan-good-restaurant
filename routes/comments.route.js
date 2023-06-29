@@ -39,7 +39,9 @@ router.post("/posts/:postId/comments", authMiddleware, async (req, res) => {
 router.get("/posts/:postId/comments", async (req, res) => {
   const { postId } = req.params;
   try {
-    const comment = await Comments.findAll({ where: { postId } });
+    const comment = await Comments.findAll({
+      where: { postId },
+    });
     if (!comment) {
       return res
         .status(404)

@@ -21,7 +21,6 @@ async function getComments() {
 
 async function renderComments() {
   let { comment: comments } = await getComments(); // 객체구조분해할당 방식으로 변수저장을 해줘야한다. getMovie()로 가져온 데이터는 배열이기 때문에 객체로 변환
-  console.log(comments); // movies 라는 객체를 받아서 화면에 출력하는 함수
   let html = "";
 
   comments.map((comment) => {
@@ -56,11 +55,15 @@ async function saveComments() {
       alert("댓글작성이 완료되었습니다.");
       location.reload();
     } else {
-      alert(data.message); // 실패 메시지 표시
+      alert("오류"); // 실패 메시지 표시
     }
   } catch (error) {
     console.error("Error:", error);
   }
+  // .then((res) => res.json()) // 이렇게하면 에러메시지 받을 수 있음
+  // .then((data) => {
+
+  // });
 }
 
 export { renderComments, saveComments };
