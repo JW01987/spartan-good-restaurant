@@ -34,6 +34,7 @@ async function renderPosts() {
                           <article>
                             <h1>${post.title}</h1>
                             <span>${post.User.UserInfo.nickname}</span>
+                            <span>${post.likes}</span>
                           </article>
                         </a>
                       </div>
