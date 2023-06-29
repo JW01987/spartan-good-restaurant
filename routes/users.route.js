@@ -1,12 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const { Users, UserInfos } = require("../models");
+const { emailCheck, passwordCheck } = require("./js/validationCheck");
+//암호화 라이브러리
 const CryptoJS = require("crypto-js");
 const PRIVATE_KEY = "secret key";
 
 // 회원가입
 router.post("/users", async (req, res) => {
   const { email, password, nickname, age, gender, introduce } = req.body;
+  if (!emailCheck(email) || !passwordCheck(password)) {
+    console.log(email, password);
+    return res
+      .status(401)
+      .json({ errorMessage: "유효하지 않은 이메일 혹은 비밀번호입니다" });
+  }
   const isExistUser = await Users.findOne({
     where: {
       email: email,
