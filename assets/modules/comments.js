@@ -25,7 +25,7 @@ async function renderComments() {
 
   comments.map((comment) => {
     let htmlSegment = `<div class="mybox" id="${comment.id}">
-      <div>이름 : ${comment.userId}</div>
+      <div>이름 : ${comment.User.UserInfo.nickname}</div>
       <div>댓글 : ${comment.content}</div>
       <button class="modify-Btn">수정</button>
       <button class="delete-Btn">삭제</button></br>

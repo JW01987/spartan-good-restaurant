@@ -1,5 +1,5 @@
 const { Comments } = require("../models");
-const { Posts } = require("../models");
+const { Posts, Users, UserInfos } = require("../models");
 const express = require("express");
 const authMiddleware = require("../middlewares/auth-middleware");
 const router = express.Router();
@@ -41,6 +41,18 @@ router.get("/posts/:postId/comments", async (req, res) => {
   try {
     const comment = await Comments.findAll({
       where: { postId },
+      include: [
+        {
+          model: Users,
+          attributes: ["id"],
+          include: [
+            {
+              model: UserInfos,
+              attributes: ["nickname"],
+            },
+          ],
+        },
+      ],
     });
     if (!comment) {
       return res
