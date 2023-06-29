@@ -48,6 +48,29 @@
       </div>
     </header>
 
+    <section>
+      <form id="post-form">
+        <div>
+          <label for="image">이미지</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept=".png, .jpg, .jpeg"
+          />
+        </div>
+        <div>
+          <label for="title">타이틀</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div>
+          <label for="content">컨텐츠</label>
+          <textarea id="content" name="content"></textarea>
+        </div>
+        <button type="submit">게시글 생성</button>
+      </form>
+    </section>
+
     <script src="post.js"></script>
   </body>
 </html>

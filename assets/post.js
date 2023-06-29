@@ -104,3 +104,47 @@ const userInfoButton = document.getElementById('user-info');
 userInfoButton.addEventListener('click', async () => {
   window.location.replace('./userInfo.html');
 });
+
+const postForm = document.getElementById('post-form');
+
+postForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const imageFile = document.getElementById('image').files[0];
+  const title = document.getElementById('title').value;
+  const content = document.getElementById('content').value;
+
+  if (!imageFile || !title || !content) {
+    alert('이미지, 타이틀, 컨텐츠를 모두 입력해주세요.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('image', imageFile);
+  formData.append('title', title);
+  formData.append('content', content);
+
+  try {
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      const { data: post } = responseData;
+      console.log('게시글 생성:', post);
+      alert('게시글이 생성되었습니다.');
+      // 게시글이 성공적으로 생성되었을 때의 동작을 추가하세요.
+    } else {
+      const errorData = await response.json();
+      console.error('게시글 생성 오류:', errorData);
+      alert('게시글 생성에 실패했습니다.');
+      // 게시글 생성에 실패했을 때의 동작을 추가하세요.
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('게시글 생성에 실패했습니다.');
+    // 게시글 생성에 실패했을 때의 동작을 추가하세요.
+  }
+});
