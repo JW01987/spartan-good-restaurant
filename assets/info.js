@@ -1,12 +1,4 @@
-const signupLink = document.getElementById('signup-link');
-const registerOverlay = document.getElementById('register-overlay');
 const loginButton = document.getElementById('login-button');
-const loginOverlay = document.getElementById('login-overlay');
-const loginLink = document.getElementById('login-link');
-const closeLoginIcon = document.getElementById('login-close-icon');
-const closeRegisterIcon = document.getElementById('register-close-icon');
-const registerForm = document.getElementById('register-form');
-const loginForm = document.getElementById('login-form');
 const newPostButton = document.getElementById('new-post-button');
 const nicknameButton = document.getElementById('nickname-button');
 const userMenuButton = document.getElementById('user-menu-button');
@@ -41,7 +33,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         if (profileResponse.ok) {
           const profileData = await profileResponse.json();
-          const { nickname } = profileData.data.UserInfo;
+          console.log(profileData.data);
+          const { email, nickname, age, gender, introduce } = profileData.data;
+          showUserInfo(email, nickname, age, gender, introduce);
           showLoggedInUI(nickname);
         } else {
           // 실패 시 로그인 버튼으로 유지
@@ -124,3 +118,21 @@ const userInfoButton = document.getElementById('user-info');
 userInfoButton.addEventListener('click', async () => {
   window.location.replace('./userInfo.html');
 });
+
+function showUserInfo(email, nickname, age, gender, introduce) {
+  const emailContent = document.querySelector('.user-info .email .content');
+  const nicknameContent = document.querySelector(
+    '.user-info .nickname .content'
+  );
+  const ageContent = document.querySelector('.user-info .age .content');
+  const genderContent = document.querySelector('.user-info .gender .content');
+  const introduceContent = document.querySelector(
+    '.user-info .introduce .content'
+  );
+
+  emailContent.textContent = email;
+  nicknameContent.textContent = nickname;
+  ageContent.textContent = age !== null ? String(age) : '';
+  genderContent.textContent = gender !== null ? String(gender) : '';
+  introduceContent.textContent = introduce;
+}
