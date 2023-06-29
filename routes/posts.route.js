@@ -16,9 +16,9 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
-    //path.extname은 주어진 경로에서 .을 포함한 확장자를 얻음, 원본 파일의 확장자까지 추출해서 저장할때 .확장자까지 저장.
+    //path.extname은 주어진 경로에서 .을 포함한 확장자를 얻음, .확장자 앞에 오는 이름은 버림.
     //file.originalname 은 원본의 이름을 의미
-    const filename = `${Date.now()}${ext}`; // 이미지 파일명을 현재시간이랑 합쳐서
+    const filename = `${Date.now()}${ext}`; // 이미지 파일명을 현재시간이랑 합쳐서, 즉 현재시간.확장자
     cb(null, filename);
   },
 });
