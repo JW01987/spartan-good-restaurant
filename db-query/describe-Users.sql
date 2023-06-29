@@ -2,4 +2,4 @@
 USE `nodeisgood-database`;
 
 -- Users 테이블 스키마 보기
-desc Users;
+SELECT * FROM 'Users';
