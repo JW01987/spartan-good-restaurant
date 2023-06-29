@@ -12,7 +12,13 @@
     <header>
       <div class="head">
         <div id="home">
-          <button id="home-button" style="cursor: pointer">matlog</button>
+          <button
+            id="home-button"
+            style="cursor: pointer"
+            onclick="window.location.href='/'"
+          >
+            matlog
+          </button>
         </div>
         <div id="search-login">
           <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
@@ -102,7 +108,6 @@
             placeholder="비밀번호"
           />
           <input type="text" id="register-inputname" placeholder="이름" />
-          <input type="text" id="register-inputGender" placeholder="성별" />
           <input type="number" id="register-inputAge" placeholder="나이" />
           <input
             type="text"

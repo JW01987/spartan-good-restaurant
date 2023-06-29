@@ -14,7 +14,13 @@
     <header>
       <div class="head">
         <div id="home">
-          <button id="home-button" style="cursor: pointer">matlog</button>
+          <button
+            id="home-button"
+            style="cursor: pointer"
+            onclick="window.location.href='/'"
+          >
+            matlog
+          </button>
         </div>
         <div id="search-login">
           <i class="fa-solid fa-magnifying-glass" style="cursor: pointer"></i>
@@ -62,7 +68,7 @@
           </div>
         </div>
         <form class="edit-form" style="display: none">
-          <input type="text" class="content-input" />
+          <input type="text" id="email" class="content-input" />
           <button class="save-button">저장</button>
         </form>
       </div>
@@ -79,7 +85,7 @@
           </div>
         </div>
         <form class="edit-form" style="display: none">
-          <input type="text" class="content-input" />
+          <input type="text" id="nickname" class="content-input" />
           <button class="save-button">저장</button>
         </form>
       </div>
@@ -96,24 +102,7 @@
           </div>
         </div>
         <form class="edit-form" style="display: none">
-          <input type="text" class="content-input" />
-          <button class="save-button">저장</button>
-        </form>
-      </div>
-      <div class="user-wrapper">
-        <div class="wrapper-title">
-          <h3>성별</h3>
-        </div>
-        <div class="wrapper-content-button">
-          <div class="wrapper-content">
-            <div class="gender"></div>
-          </div>
-          <div class="wrapper-button">
-            <button class="correction-button">수정</button>
-          </div>
-        </div>
-        <form class="edit-form" style="display: none">
-          <input type="text" class="content-input" />
+          <input type="text" id="age" class="content-input" />
           <button class="save-button">저장</button>
         </form>
       </div>
@@ -130,7 +119,35 @@
           </div>
         </div>
         <form class="edit-form" style="display: none">
-          <input type="text" class="content-input" />
+          <input type="text" id="introduce" class="content-input" />
+          <button class="save-button">저장</button>
+        </form>
+      </div>
+      <div class="user-wrapper">
+        <div class="wrapper-title">
+          <h3>비밀번호 변경</h3>
+        </div>
+        <div class="wrapper-content-button">
+          <div class="wrapper-content">
+            <div class="password"></div>
+          </div>
+          <div class="wrapper-button">
+            <button class="correction-button">수정</button>
+          </div>
+        </div>
+        <form class="edit-form" style="display: none">
+          <input
+            id="psw"
+            type="text"
+            class="content-input"
+            placeholder="현재 비밀번호"
+          />
+          <input
+            id="confirmPsw"
+            type="text"
+            class="content-input"
+            placeholder="변경된 비밀번호"
+          />
           <button class="save-button">저장</button>
         </form>
       </div>

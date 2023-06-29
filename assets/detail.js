@@ -122,7 +122,6 @@ registerForm.addEventListener("submit", async (event) => {
   const password = document.getElementById("register-inputPassword").value;
   const nickname = document.getElementById("register-inputname").value;
   const age = document.getElementById("register-inputAge").value;
-  const gender = document.getElementById("register-inputGender").value;
   const introduce = document.getElementById("register-inputIntroduce").value;
 
   try {
@@ -136,7 +135,6 @@ registerForm.addEventListener("submit", async (event) => {
         password,
         nickname,
         age,
-        gender,
         introduce,
       }),
     });
