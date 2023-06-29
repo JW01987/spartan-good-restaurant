@@ -39,11 +39,11 @@ router.post("/posts/:postId/comments", authMiddleware, async (req, res) => {
 router.get("/posts/:postId/comments", async (req, res) => {
   const { postId } = req.params;
   try {
-    const comment = await Comments.findOne({ where: { postId } });
+    const comment = await Comments.findAll({ where: { postId } });
     if (!comment) {
       return res
         .status(404)
-        .json({ errorMessage: "게시글이 존재하지 않습니다." });
+        .json({ errorMessage: "댓글이 존재하지 않습니다." });
     }
     res.status(200).json({ comment });
   } catch {
