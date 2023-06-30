@@ -20,9 +20,9 @@ async function renderPostDetails() {
   let html = "";
   let imagePath = posts.image.replace("assets/", "");
   html = `<img src= http://localhost:3000/${imagePath} />
-  <h1 class="detailPageTitle">post.title : ${posts.title}</h1>
-  <h2>post.User.UserInfo.nickname : ${posts.User.UserInfo.nickname}</h2>
-  <p>post.content : ${posts.content}</p>
+  <h1 class="detailPageTitle">TITLE : ${posts.title}</h1>
+  <h2>😎 ${posts.User.UserInfo.nickname}</h2>
+  <p>${posts.content}</p>
   <div id="change">
           <button id="post-modify">수정</button>
           <button id="post-delete">삭제</button>
