@@ -20,6 +20,12 @@ async function renderPostDetails() {
   let html = "";
   let imagePath = posts.image.replace("assets/", "");
   html = `<div class="card-box">
+  <div class="likeBtn">
+	<div class="container">
+		<div class="tick">
+		</div>
+	</div>
+</div>
   <img src= http://localhost:3000/${imagePath} />
   <div class="title-box">
   <h1 class="detailPageTitle">TITLE : ${posts.title}</h1>
