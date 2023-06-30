@@ -126,9 +126,11 @@ router.put("/posts/:postId", authMiddleware, async (req, res) => {
 
   const post = await Posts.findOne({ where: { id: postId } });
   if (!post) {
-    return res.status(404).json({ message: "게시글이 존재하지 않습니다." });
+    return res
+      .status(404)
+      .json({ errorMessage: "게시글이 존재하지 않습니다." });
   } else if (post.userId !== id) {
-    return res.status(404).json({ message: "수정할 권한이 없습니다." });
+    return res.status(404).json({ errorMessage: "수정할 권한이 없습니다." });
   }
 
   await Posts.update(
@@ -138,7 +140,7 @@ router.put("/posts/:postId", authMiddleware, async (req, res) => {
       //   , { userId } // 59번째줄에서 이미 검증하기 때문에 주석처리하였습니다.
     }
   );
-  res.status(200).json({ data: "게시글이 수정되었습니다." });
+  res.status(200).json({ message: "게시글이 수정되었습니다." });
 });
 
 // 게시글 삭제
@@ -148,14 +150,16 @@ router.delete("/posts/:postId", authMiddleware, async (req, res) => {
 
   const post = await Posts.findOne({ where: { id: postId } });
   if (!post) {
-    return res.status(404).json({ message: "게시글이 존재하지 않습니다." });
+    return res
+      .status(404)
+      .json({ errorMessage: "게시글이 존재하지 않습니다." });
   } else if (post.userId !== id) {
-    return res.status(404).json({ message: "수정할 권한이 없습니다." });
+    return res.status(404).json({ errorMessage: "수정할 권한이 없습니다." });
   }
 
   await Posts.destroy({ where: { id: postId } });
 
-  res.status(200).json({ data: "게시글이 삭제되었습니다." });
+  res.status(200).json({ message: "게시글이 삭제되었습니다." });
 });
 
 router.post("/posts/:postId/like", async (req, res) => {
