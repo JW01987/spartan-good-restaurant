@@ -26,21 +26,20 @@ async function renderPosts() {
     let image = `http://localhost:3000/${imagePath}`;
 
     let htmlSegment = `<div class="item-2">
-                        <a href="./detail.html?postId=${post.id}" class="card">
-                          <div
-                            class="thumb"
-                            style="
-                              background-image: url('${image}');
-                            "
-                          ></div>
-                          <article>
-                            <h1>${post.title}</h1>
-                            <span>${post.User.UserInfo.nickname}</span>
-                            <span>${post.likes}</span>
-                          </article>
-                        </a>
-                      </div>
-                      `;
+      <a href="./detail.html?postId=${post.id}" class="card">
+        <div
+          class="thumb"
+          style="
+            background-image: url('${image}');
+          "
+        ></div>
+        <article>
+          <h1>${post.title}</h1>
+          <span>${post.User.UserInfo.nickname}</span>
+          <span>${post.likes}</span>
+        </article>
+      </a>
+    </div>`;
     html += htmlSegment;
   });
 

@@ -449,28 +449,9 @@ header {
   border: 1px solid rgba(141, 141, 141, 0.526);
   border-radius: 3px;
 }
-.comments-text {
-  width: 50%;
-  border: 1px solid rgba(68, 68, 68, 0.366);
-  resize: none;
-  box-sizing: border-box;
-  border-radius: 5px;
-  font-size: 1.5em;
-}
-.comment-input-btn {
-  vertical-align: middle;
-  display: flex;
-  justify-content: center;
-}
-.comments-btn {
-  display: inline;
-  margin-left: 10px;
-  background-color: rgb(62, 170, 80);
-  color: white;
-  font-weight: 600;
-  border: none;
-  padding: 5px 8px;
-  border-radius: 3px;
+
+.change {
+  color: black;
 }
 
 .comments-btn:hover {
@@ -737,4 +718,27 @@ header {
   background-color: #666;
   color: white;
   font-weight: 600;
+}
+.comments-text {
+  width: 50%;
+  border: 1px solid rgba(68, 68, 68, 0.366);
+  resize: none;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1.5em;
+}
+.comment-input-btn {
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}
+.comments-btn {
+  display: inline;
+  margin-left: 10px;
+  background-color: rgb(62, 170, 80);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
 }
