@@ -68,6 +68,7 @@ async function saveComments() {
 
 //  댓글 수정
 async function modifyComments(e) {
+  // 댓글 수정시
   if (e.target.classList.contains("modify-Btn")) {
     // console.log(e.target.parentElement.id);
     // console.log("Target : ", e.target);
@@ -125,6 +126,7 @@ async function modifyComments(e) {
       alert("수정취소");
       window.location.reload();
     });
+    // 댓글 삭제시
   } else if (e.target.classList.contains("delete-Btn")) {
     {
       // console.log(e.target.parentElement.id);
@@ -178,62 +180,5 @@ async function modifyComments(e) {
     }
   }
 }
-
-// 댓글삭제
-// async function deleteComments(e) {
-//   if (e.target.classList.contains("delete-Btn")) {
-//     // console.log(e.target.parentElement.id);
-//     // console.log("Target : ", e.target);
-//     // console.log("Target : ", e.target.parentElement);
-//     // console.log(document.getElementById(e.target.parentElement.id));
-//     let { comment: comments } = await getComments();
-//     let currentComment = comments.filter(
-//       (comment) => comment.id == e.target.parentElement.id
-//     );
-//     //
-//     const deletebox = document.getElementById(e.target.parentElement.id);
-//     deletebox.innerHTML = `
-//     <div>이름 : ${currentComment[0].id}</div>
-//   <div><a>content : '${currentComment[0].content}'</a></div>
-//   <button class="modify-Btn" id='deleteVerify'>정말 삭제하시겠습니까?</button>
-//   <button class="cancel-Btn" id='cancel'>취소</button>`;
-
-//     // 확인버튼 눌렀을때
-//     const deleteVerifyBtn = document.getElementById("deleteVerify");
-//     deleteVerifyBtn.addEventListener("click", () => {
-//       fetch(`/api/posts/${postId}/comments/${currentComment[0].id}`, {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           content: reviewContent,
-//         }),
-//       })
-//         .then((response) => {
-//           return response.json();
-//         })
-//         .then((data) => {
-//           if (data.message) {
-//             alert(data.message);
-//             return location.reload();
-//           } else if (data.errorMessage) {
-//             alert(data.errorMessage);
-//             return location.reload();
-//           }
-//         })
-//         .catch((error) => {
-//           console.error("Error:", error);
-//           alert("삭제 오류입니다.");
-//         });
-//     });
-//     // 취소 버튼 눌렀을 때
-//     const cancelBtn = document.getElementById("cancel");
-//     cancelBtn.addEventListener("click", () => {
-//       alert("삭제취소");
-//       window.location.reload();
-//     });
-//   }
-// }
 
 export { renderComments, saveComments, modifyComments };
