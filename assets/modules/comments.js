@@ -70,10 +70,6 @@ async function saveComments() {
 async function modifyComments(e) {
   // 댓글 수정시
   if (e.target.classList.contains("modify-Btn")) {
-    // console.log(e.target.parentElement.id);
-    // console.log("Target : ", e.target);
-    // console.log("Target : ", e.target.parentElement);
-    // console.log(document.getElementById(e.target.parentElement.id));
     let { comment: comments } = await getComments();
     let currentComment = comments.filter(
       (comment) => comment.id == e.target.parentElement.id
