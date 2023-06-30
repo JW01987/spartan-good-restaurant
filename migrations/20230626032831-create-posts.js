@@ -25,14 +25,23 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      likes: {
+      image: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      likes: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn("now"),
+      },
+      image: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       updatedAt: {
         allowNull: false,

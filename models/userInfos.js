@@ -26,22 +26,25 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
       },
       nickname: {
         allowNull: false,
         type: DataTypes.STRING,
+        defaultValue: "익명",
       },
       age: {
         allowNull: true,
         type: DataTypes.INTEGER,
-      },
-      gender: {
-        allowNull: true,
-        type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
       introduce: {
         allowNull: true,
         type: DataTypes.STRING,
+        defaultValue: "",
       },
       createdAt: {
         allowNull: false,

@@ -1,5 +1,5 @@
-'use strict';
-const { Model } = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Posts extends Model {
     /**
@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Users, {
-        targetKey: 'id',
-        foreignKey: 'userId',
+        targetKey: "id",
+        foreignKey: "userId",
       });
       this.hasMany(models.Comments, {
-        sourceKey: 'id',
-        foreignKey: 'postId',
+        sourceKey: "id",
+        foreignKey: "postId",
       });
     }
   }
@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
       },
       title: {
         allowNull: false,
@@ -39,16 +43,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      likes: {
+      image: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      likes: {
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-      updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
@@ -57,10 +61,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
     },
     {
       sequelize,
-      modelName: 'Posts',
+      modelName: "Posts",
     }
   );
   return Posts;
