@@ -742,3 +742,45 @@ header {
   padding: 5px 8px;
   border-radius: 3px;
 }
+
+/* 버튼관련 부분 */
+.likeBtn,
+.tick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.likeBtn {
+  width: 100px;
+  height: 40px;
+  background: dodgerblue;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.67, 0.17, 0.4, 0.83);
+}
+
+.likeBtn svg {
+  transform: rotate(180deg);
+  transition: all 0.5s;
+}
+
+.likeBtn__circle {
+  width: 60px;
+  height: 60px;
+  background: mediumseagreen;
+  border-radius: 50%;
+  transform: rotate(-180deg);
+}
+
+.likeBtn:hover {
+  cursor: pointer;
+}
+
+.tick {
+  color: white;
+  font-size: 2em;
+  transition: all 0.9s;
+}
+
+/* 버튼관련 부분 끝 */

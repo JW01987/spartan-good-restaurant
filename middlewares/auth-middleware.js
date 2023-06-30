@@ -3,6 +3,7 @@ const { Users } = require("../models");
 
 module.exports = async (req, res, next) => {
   try {
+    // 사용자 인증
     const { authorization } = req.cookies;
     const [tokenType, token] = authorization.split(" ");
     if (tokenType !== "Bearer" || !token) {

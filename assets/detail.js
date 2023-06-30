@@ -6,6 +6,7 @@ import {
   saveComments,
   modifyComments,
 } from "./modules/comments.js";
+import { likeBtn } from "./modules/forLikeButton.js";
 
 renderPostDetails();
 renderComments();
@@ -31,7 +32,9 @@ const postList = document.querySelector("#detail-list");
 insertCommentButton.addEventListener("click", saveComments); // 댓글저장
 
 postList.addEventListener("click", (e) => {
-  modifyPosts(e);
+  if (e.target.classList.contains("likeBtn")) {
+    likeBtn();
+  } else modifyPosts(e);
 });
 // 댓글 수정 삭제
 commentsList.addEventListener("click", (e) => {
