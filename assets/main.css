@@ -428,38 +428,76 @@ header {
   border-radius: 3px;
   text-align: center;
 }
-
-.mybox > li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 10px;
-  /* min-height: 48px; */
-}
-
-.mybox > li > h2 {
-  max-width: 75%;
-  font-size: 20px;
-  font-weight: 500;
-  /* margin-right: auto; */
-  margin-bottom: 0px;
-}
-
-.mybox > li > h2.done {
-  text-decoration: line-through;
-}
-.mybox > img {
+.card-box {
   width: 80%;
+  margin: auto;
+}
+.title-box {
+  margin: 1em 2em 2em 1em;
+}
+.detailPageTitle {
+  font-size: 1.8em;
+  font-weight: 800;
+}
+.title-box h2 {
+  text-align: end;
+  color: #555;
+}
+.card-box > img {
+  width: 100%;
   margin-top: 30px;
   border: 1px solid rgba(141, 141, 141, 0.526);
   border-radius: 3px;
-  /* -moz-border-radius: 7px;
-  -khtml-border-radius: 7px;
-  -webkit-border-radius: 7px; */
+}
+.comments-text {
+  width: 50%;
+  border: 1px solid rgba(68, 68, 68, 0.366);
+  resize: none;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 1.5em;
+}
+.comment-input-btn {
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}
+.comments-btn {
+  display: inline;
+  margin-left: 10px;
+  background-color: rgb(62, 170, 80);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
 }
 
+.comments-btn:hover {
+  background-color: rgb(43, 119, 56);
+}
+.modify-Btn {
+  background-color: rgb(62, 170, 80);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+.delete-Btn {
+  background-color: rgb(212, 65, 51);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+.modify-Btn:hover {
+  background-color: rgb(43, 119, 56);
+}
+.delete-Btn:hover {
+  background-color: rgb(159, 47, 37);
+}
 .homeButton {
   width: 50px;
 
@@ -597,4 +635,106 @@ header {
 
 .modify-Btn {
   color: white;
+}
+
+#post-form {
+  width: 60%;
+  margin: auto;
+}
+.filebox {
+  margin-top: 20px;
+}
+.filebox .upload-name {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #666;
+  width: 40%;
+  color: #444;
+}
+.filebox label {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #444;
+  cursor: pointer;
+  height: 15px;
+  margin-left: 10px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.filebox label:hover {
+  color: rgb(5, 5, 5);
+  background-color: rgb(186, 186, 186);
+}
+.filebox input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+.title-input {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title-input input {
+  height: 30px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #666;
+  width: 55%;
+  color: #444;
+  font-size: 1.5em;
+}
+.title-input label {
+  font-size: 2em;
+  font-weight: 600;
+}
+.content-input {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.content-input textarea {
+  height: 300px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #666;
+  width: 55%;
+  color: #444;
+  resize: none;
+  font-size: 1.3em;
+}
+
+#post-form button {
+  margin-top: 10px;
+  background-color: rgb(46, 148, 185);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+#post-form button:hover {
+  background-color: rgb(36, 108, 135);
+}
+#register-button:hover {
+  background-color: #666;
+  color: white;
+  font-weight: 600;
+}
+#login-btn:hover {
+  background-color: #666;
+  color: white;
+  font-weight: 600;
 }
