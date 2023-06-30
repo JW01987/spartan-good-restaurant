@@ -147,24 +147,42 @@ h1 {
 
 .login-container {
   border: 1px solid #ccc;
-  padding: 20px;
+  width: 25rem;
+  height: 30rem;
+  padding: 20px 30px;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background-color: #fff;
   position: relative;
+  border-radius: 6px;
+  border-color: #999;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .login-container h2 {
-  margin-top: 0;
+  margin-top: 15px;
+  margin-bottom: 25px;
 }
 
-.login-container input[type="email"] {
+.login-container input {
+  height: 3rem;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 0 15px;
+  border-radius: 6px;
+  border: 1px solid#cacaca;
 }
 
 .login-container button {
   margin-bottom: 10px;
   padding: 5px 10px;
+  border: none;
+  height: 2rem;
+  border-radius: 6px;
 }
 
 .login-container p {
@@ -185,6 +203,11 @@ h1 {
 
 /* register */
 
+#register-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .register-overlay {
   position: fixed;
   top: 0;
@@ -195,6 +218,7 @@ h1 {
   display: none;
   justify-content: center;
   align-items: center;
+  border-radius: 6px;
 }
 
 .register-container {
@@ -426,6 +450,7 @@ header {
   text-decoration: line-through;
 }
 .mybox > img {
+  width: 80%;
   border: 3px solid gold;
   border-radius: 7px;
   -moz-border-radius: 7px;

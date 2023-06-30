@@ -32,11 +32,10 @@ router.get("/profile", authMiddleware, async (req, res) => {
 });
 
 //프로필 수정
-router.put("/profile", authMiddleware, async (req, res) => {
+router.patch("/profile", authMiddleware, async (req, res) => {
   const { email, password, confirmPassword, nickname, age, introduce } =
     req.body;
   const { id } = res.locals.user;
-
   try {
     if (email) {
       console.log(1, email);
@@ -50,24 +49,23 @@ router.put("/profile", authMiddleware, async (req, res) => {
       console.log(3, email);
     }
 
-    if (password && confirmPassword) {
-      if (!passwordCheck(password)) {
+    if (confirmPassword) {
+      if (!passwordCheck(confirmPassword)) {
         return res
           .status(400)
           .json({ errorMessage: "유효하지 않은 비밀번호입니다." });
-      }
-
-      if (password !== confirmPassword) {
-        return res
-          .status(400)
-          .json({ errorMessage: "비밀번호가 일치하지 않습니다." });
       }
 
       const user = await Users.findOne({ where: { id } });
       const bytes = CryptoJS.AES.decrypt(user.password, PRIVATE_KEY);
       const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
-      if (decrypted === password) {
+      if (decrypted !== password) {
+        return res
+          .status(400)
+          .json({ errorMessage: "비밀번호가 일치하지 않습니다." });
+      }
+      if (decrypted === confirmPassword) {
         return res
           .status(400)
           .json({ errorMessage: "기존 비밀번호와 동일한 비밀번호입니다." });
@@ -79,7 +77,10 @@ router.put("/profile", authMiddleware, async (req, res) => {
       ).toString();
       await Users.update({ password: encrypted }, { where: { id } });
     }
-
+    console.clear();
+    console.log({ nickname });
+    console.log({ age });
+    console.log({ introduce });
     if (nickname || age || introduce) {
       await UserInfos.update(
         { nickname, age, introduce },
