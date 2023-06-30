@@ -10,13 +10,10 @@ const {
   authRouter,
 } = require("./routes");
 
-const path = require("path");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static('assets')); //정적파일 사용하기 위해, assets의 html, css, js, 이미지 등
-const publicPath = path.join(__dirname, "assets");
-app.use(express.static(publicPath));
+app.use(express.static("assets")); //정적파일 사용하기 위해, assets의 html, css, js, 이미지 등
 app.use("/api", [
   postRouter,
   commentRouter,
