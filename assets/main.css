@@ -460,6 +460,10 @@ header {
   -webkit-border-radius: 7px; */
 }
 
+.change {
+  color: black;
+}
+
 .homeButton {
   width: 50px;
 

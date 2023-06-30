@@ -65,7 +65,6 @@ async function saveComments() {
 
   // });
 }
-
 //  댓글 수정
 async function modifyComments(e) {
   // 댓글 수정시
@@ -176,5 +175,4 @@ async function modifyComments(e) {
     }
   }
 }
-
 export { renderComments, saveComments, modifyComments };

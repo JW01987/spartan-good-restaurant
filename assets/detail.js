@@ -1,6 +1,6 @@
 //detailhtml 과 연결되어 있는 js파일
 
-import { renderPostDetails } from "./modules/GET-postDetails.js"; // 렌더링하는 모듈
+import { renderPostDetails, modifyPosts } from "./modules/GET-postDetails.js"; // 렌더링하는 모듈
 import {
   renderComments,
   saveComments,
@@ -26,9 +26,13 @@ const userMenuUI = document.getElementById("user-menu");
 const homeButton = document.getElementById("home-button");
 const insertCommentButton = document.getElementById("comments-btn");
 const commentsList = document.querySelector(".comments-list");
+const postList = document.querySelector("#detail-list");
 
 insertCommentButton.addEventListener("click", saveComments); // 댓글저장
 
+postList.addEventListener("click", (e) => {
+  modifyPosts(e);
+});
 // 댓글 수정 삭제
 commentsList.addEventListener("click", (e) => {
   modifyComments(e);
