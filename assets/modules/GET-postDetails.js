@@ -19,13 +19,17 @@ async function renderPostDetails() {
   let { data: posts } = await getPostDetails(); // 객체구조분해할당 방식으로 변수저장을 해줘야한다. getMovie()로 가져온 데이터는 배열이기 때문에 객체로 변환
   console.log(posts); // movies 라는 객체를 받아서 화면에 출력하는 함수
   let html = "";
-  //let imagePath = posts.image.replace("assets/", "");
-  html = `<img src= http://localhost:3000/${imagePath} />
+  let imagePath = posts.image.replace("assets/", "");
+  html = `<div class="card-box">
+  <img src= http://localhost:3000/${imagePath} />
+  <div class="title-box">
   <h1 class="detailPageTitle">${posts.title}</h1>
   <h2>${posts.User.UserInfo.nickname}</h2>
+  <div>
   <p>
     ${posts.content}
-  </p>`;
+  </p>
+  <div>`;
 
   let container = document.querySelector("#detail-list");
   container.innerHTML = html;
