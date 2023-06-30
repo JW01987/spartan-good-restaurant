@@ -10,12 +10,11 @@ const {
   authRouter,
 } = require('./routes');
 
-app.use(express.static('assets'));
 app.use(express.json());
-app.use(express.static('assets'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('assets')); //정적파일 사용하기 위해, assets의 html, css, js, 이미지 등
+
 app.use('/api', [
   postRouter,
   commentRouter,
