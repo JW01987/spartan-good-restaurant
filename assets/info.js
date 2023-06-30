@@ -3,7 +3,12 @@ const newPostButton = document.getElementById("new-post-button");
 const nicknameButton = document.getElementById("nickname-button");
 const userMenuButton = document.getElementById("user-menu-button");
 const userMenuUI = document.getElementById("user-menu");
-const correctionButtons = document.querySelectorAll(".correction-button");
+let emailInput = document.querySelector("#email");
+let nicknameInput = document.querySelector("#nickname");
+let ageInput = document.querySelector("#age");
+let introduceInput = document.querySelector("#introduce");
+let correctionButtons = document.querySelectorAll(".correction-button");
+
 correctionButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -128,6 +133,11 @@ function showUserInfo(email, nickname, age, introduce) {
   nicknameContent.textContent = nickname;
   ageContent.textContent = age !== null ? String(age) : "";
   introduceContent.textContent = introduce;
+
+  emailInput.value = email;
+  nicknameInput.value = nickname;
+  ageInput.value = Number(age);
+  introduceInput.value = introduce;
 }
 
 const editForm = document.querySelectorAll(".edit-form");
@@ -135,31 +145,26 @@ const editForm = document.querySelectorAll(".edit-form");
 editForm.forEach((form) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const emailInput = document.querySelector("#email").value;
-    const nicknameInput = document.querySelector("#nickname").value;
-    const ageInput = document.querySelector("#age").value;
-    const introduceInput = document.querySelector("#introduce").value;
-    const pswInput = document.querySelector("#psw").value;
-    const confirmPswInput = document.querySelector("#confirmPsw").value;
-    let pswRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    let emailRegExp = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    let space = /\s/g;
 
-    if (isNaN(ageInput)) {
+    const pswInput = document.querySelector("#psw");
+    const confirmPswInput = document.querySelector("#confirmPsw");
+
+    if (isNaN(ageInput.value)) {
       return alert("나이는 숫자를 입력하세요");
     }
+
     fetch("/api/profile", {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: emailInput,
-        nickname: nicknameInput,
-        age: ageInput,
-        introduce: introduceInput,
-        password: pswInput,
-        confirmPassword: confirmPswInput,
+        email: emailInput.value,
+        nickname: nicknameInput.value,
+        age: ageInput.value,
+        introduce: introduceInput.value,
+        password: pswInput.value,
+        confirmPassword: confirmPswInput.value,
       }),
     })
       .then((response) => {
