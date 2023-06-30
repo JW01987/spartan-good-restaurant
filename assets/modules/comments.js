@@ -25,11 +25,13 @@ async function renderComments() {
 
   comments.map((comment) => {
     let htmlSegment = `<div class="mybox" id="${comment.id}">
+    <div style="margin-bottom:5px;">
       <div>이름 : ${comment.User.UserInfo.nickname}</div>
       <div>댓글 : ${comment.content}</div>
+      </div>
       <button class="modify-Btn">수정</button>
       <button class="delete-Btn">삭제</button></br>
-      <a>${comment.createdAt}</a>
+      <div style="margin-top:5px;">${comment.createdAt}</div>
       </div>`;
     html += htmlSegment;
   });

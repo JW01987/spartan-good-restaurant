@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     //destination은 어느 폴더안에 업로드 한 파일을 저장할 지를 결정 file은 받은 파일,
     //cb는 multer가 제공하는 콜백함수 어떻게 생겼는지는 모름.
-    cb(null, "assets\\uploads\\"); // 이미지가 저장될 폴더 경로, null은 에러가 없음을 의미
+    cb(null, "assets/uploads/"); // 이미지가 저장될 폴더 경로, null은 에러가 없음을 의미
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);

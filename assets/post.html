@@ -48,9 +48,21 @@
       </div>
     </header>
 
-    <section>
+    <section class="mybox">
       <form id="post-form">
-        <div>
+        <div class="title-input">
+          <label for="title">제목</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div class="content-input">
+          <textarea
+            id="content"
+            name="content"
+            placeholder="내용을 적어주세요"
+          ></textarea>
+        </div>
+        <div class="filebox">
+          <input class="upload-name" value="첨부파일" placeholder="첨부파일" />
           <label for="image">이미지</label>
           <input
             type="file"
@@ -58,14 +70,6 @@
             name="image"
             accept=".png, .jpg, .jpeg"
           />
-        </div>
-        <div>
-          <label for="title">타이틀</label>
-          <input type="text" id="title" name="title" />
-        </div>
-        <div>
-          <label for="content">컨텐츠</label>
-          <textarea id="content" name="content"></textarea>
         </div>
         <button type="submit">게시글 생성</button>
       </form>

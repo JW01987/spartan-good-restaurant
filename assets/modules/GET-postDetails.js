@@ -19,14 +19,16 @@ async function renderPostDetails() {
   let { data: posts } = await getPostDetails();
   let html = "";
   let imagePath = posts.image.replace("assets/", "");
-  html = `<img src= http://localhost:3000/${imagePath} />
-  <h1 class="detailPageTitle">TITLE : ${posts.title}</h1>
-  <h2>😎 ${posts.User.UserInfo.nickname}</h2>
-  <p>${posts.content}</p>
-  <div id="change">
-          <button id="post-modify">수정</button>
-          <button id="post-delete">삭제</button>
-        </div>`;
+  html = `<div class="card-box">
+  <img src= http://localhost:3000/${imagePath} />
+  <div class="title-box">
+  <h1 class="detailPageTitle">${posts.title}</h1>
+  <h2>${posts.User.UserInfo.nickname}</h2>
+  <div>
+  <p>
+    ${posts.content}
+  </p>
+  <div>`;
 
   let container = document.querySelector("#detail-list");
   container.innerHTML = html;
