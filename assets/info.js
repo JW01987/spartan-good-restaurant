@@ -184,3 +184,12 @@ editForm.forEach((form) => {
       });
   });
 });
+
+newPostButton.addEventListener("click", async () => {
+  window.location.replace("./Post.html");
+});
+
+const homeButton = document.getElementById("home-button");
+homeButton.addEventListener("click", async () => {
+  window.location.replace("./");
+});

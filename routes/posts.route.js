@@ -1,9 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const { Posts, Users, UserInfos } = require('../models');
 const multer = require('multer');
 const path = require('path');
 const authMiddleware = require('../middlewares/auth-middleware.js');
+const likes = require('../models/likes');
 
 //multer 설정, uploads 폴더에 전송받은 이미지를 저장.
 //s3쓰지 않고 로컬에 직접 저장
@@ -66,7 +67,7 @@ router.post(
 // 게시글 목록 조회
 router.get('/posts', async (req, res) => {
   const posts = await Posts.findAll({
-    attributes: ['id', 'userId', 'title', 'image', 'createdAt'],
+    attributes: ['id', 'userId', 'title', 'image', 'createdAt', 'likes'],
     // 항목 필요 시 수정
     order: [['createdAt', 'ASC']],
     include: [
@@ -157,4 +158,21 @@ router.delete('/posts/:postId', authMiddleware, async (req, res) => {
   res.status(200).json({ data: '게시글이 삭제되었습니다.' });
 });
 
+router.post('/posts/:postId/like', async(req, res) => {
+  const { postId } = req.params;
+
+  const post = await Posts.findOne({ where: { id: postId } });
+  if (!post) {
+    return res.status(404).json({ message: '게시글이 존재하지 않습니다.' });
+  }
+
+  await Posts.update(
+    { likes: post.likes + 1 },
+    {
+      where: { id: postId },
+      //   , { userId } // 59번째줄에서 이미 검증하기 때문에 주석처리하였습니다.
+    }
+  );
+  res.status(200).json({ data: '게시글이 수정되었습니다.' });
+})
 module.exports = router;
