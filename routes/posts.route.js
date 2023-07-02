@@ -97,6 +97,7 @@ router.get("/posts/:postId", async (req, res) => {
       "title",
       "content",
       "image",
+      "likes",
       "createdAt",
       "updatedAt",
     ],

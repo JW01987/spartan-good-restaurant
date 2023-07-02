@@ -20,12 +20,6 @@ async function renderPostDetails() {
   let html = "";
   let imagePath = posts.image.replace("assets/", "");
   html = `<div class="card-box">
-  <div class="likeBtn">
-	<div class="container">
-		<div class="tick">
-		</div>
-	</div>
-</div>
   <img src= http://localhost:3000/${imagePath} />
   <div class="title-box">
   <h1 class="detailPageTitle">TITLE : ${posts.title}</h1>
@@ -34,6 +28,13 @@ async function renderPostDetails() {
   <div id="change">
   <button id="post-modify">수정</button>
   <button id="post-delete">삭제</button>
+  <button type="button" class="btn_like" id="likeBtn">
+  <span class="img_emoti">좋아요</span>
+  <span class="ani_heart_m"></span>
+  <a>${posts.likes}</a>
+</button>
+</div>
+</div>
 </div>
   `;
   let container = document.querySelector("#detail-list");
