@@ -1,6 +1,10 @@
 //detailhtml 과 연결되어 있는 js파일
 
-import { renderPostDetails, modifyPosts } from "./modules/GET-postDetails.js"; // 렌더링하는 모듈
+import {
+  renderPostDetails,
+  modifyPosts,
+  likeBtn,
+} from "./modules/GET-postDetails.js"; // 렌더링하는 모듈
 import {
   renderComments,
   saveComments,
@@ -31,19 +35,9 @@ const postList = document.querySelector("#detail-list");
 insertCommentButton.addEventListener("click", saveComments); // 댓글저장
 
 postList.addEventListener("click", (e) => {
+  console.log(e.target);
   if (e.target.id == "likeBtn") {
-    // 클릭한 객체가 좋아요 버튼
-    var aniHeartM = document.querySelector(".ani_heart_m");
-
-    if (likeBtn.classList.contains("btn_unlike")) {
-      likeBtn.classList.remove("btn_unlike");
-      aniHeartM.classList.remove("hi");
-      aniHeartM.classList.add("bye");
-    } else {
-      likeBtn.classList.add("btn_unlike");
-      aniHeartM.classList.add("hi");
-      aniHeartM.classList.remove("bye");
-    }
+    likeBtn();
   } else {
     // 수정
     modifyPosts(e);

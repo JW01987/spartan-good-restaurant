@@ -178,6 +178,24 @@ router.post("/posts/:postId/like", async (req, res) => {
       //   , { userId } // 59번째줄에서 이미 검증하기 때문에 주석처리하였습니다.
     }
   );
-  res.status(200).json({ data: "게시글이 수정되었습니다." });
+  res.status(200).json({ data: "좋아요가 +1 되었습니다" });
+});
+
+router.post("/posts/:postId/unlike", async (req, res) => {
+  const { postId } = req.params;
+
+  const post = await Posts.findOne({ where: { id: postId } });
+  if (!post) {
+    return res.status(404).json({ message: "게시글이 존재하지 않습니다." });
+  }
+
+  await Posts.update(
+    { likes: post.likes - 1 },
+    {
+      where: { id: postId },
+      //   , { userId } // 59번째줄에서 이미 검증하기 때문에 주석처리하였습니다.
+    }
+  );
+  res.status(200).json({ data: "좋아요가 취소되었습니다" });
 });
 module.exports = router;
