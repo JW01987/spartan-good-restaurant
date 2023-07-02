@@ -145,58 +145,16 @@ async function modifyPosts(e) {
 
 // 좋어요
 async function likeBtn() {
-  var aniHeartM = document.querySelector(".ani_heart_m");
-  var likeBtn = document.querySelector("#likeBtn");
+  const aniHeartM = document.querySelector(".ani_heart_m");
+  const likeBtn = document.querySelector("#likeBtn");
   if (likeBtn.classList.contains("btn_unlike")) {
     likeBtn.classList.remove("btn_unlike");
     aniHeartM.classList.remove("hi");
     aniHeartM.classList.add("bye");
-    fetch(`/api/posts/${postId}/like`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        if (data.data) {
-          alert(data.data);
-        } else if (data.message) {
-          alert(data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("오류입니다.");
-      });
   } else {
     likeBtn.classList.add("btn_unlike");
     aniHeartM.classList.add("hi");
     aniHeartM.classList.remove("bye");
-    fetch(`/api/posts/${postId}/unlike`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        if (data.data) {
-          alert(data.data);
-        } else if (data.message) {
-          alert(data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("오류입니다.");
-      });
   }
 }
 

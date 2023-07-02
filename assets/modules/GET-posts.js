@@ -26,17 +26,16 @@ async function renderPosts() {
     let image = `http://localhost:3000/${imagePath}`;
 
     let htmlSegment = `<div class="item-2">
-      <a href="./detail.html?postId=${post.id}" class="card">
-        <div
-          class="thumb"
-          style="
-            background-image: url('${image}');
-          "
-        ></div>
+      <a class="card">
+        <div onclick="location.href='./detail.html?postId=${post.id}'" 
+        class="thumb" style="background-image: url('${image}');cursor: pointer;"></div>
         <article>
           <h1>${post.title}</h1>
           <span>${post.User.UserInfo.nickname}</span>
-          <span>${post.likes}</span>
+          <span>
+          <button id="likeBtn" style="color: red">♡</button>
+          ${post.likes}
+          </span>
         </article>
       </a>
     </div>`;
