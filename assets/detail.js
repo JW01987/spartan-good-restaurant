@@ -35,7 +35,6 @@ const postList = document.querySelector("#detail-list");
 insertCommentButton.addEventListener("click", saveComments); // 댓글저장
 
 postList.addEventListener("click", (e) => {
-  console.log(e.target);
   if (e.target.id == "likeBtn") {
     likeBtn();
   } else {

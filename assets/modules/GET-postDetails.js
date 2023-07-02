@@ -31,7 +31,7 @@ async function renderPostDetails() {
   <button type="button" class="btn_like" id="likeBtn">
   <span class="img_emoti">좋아요</span>
   <span class="ani_heart_m"></span>
-  <a>${posts.likes}</a>
+  <a>${posts.likes}</a>  
 </button>
 </div>
 </div>
@@ -46,7 +46,6 @@ async function modifyPosts(e) {
   // 게시물 수정시
   if (e.target.id == "post-modify") {
     let { data: posts } = await getPostDetails();
-    console.log(posts);
     const modifyBox = document.getElementById(e.target.parentElement.id);
     modifyBox.innerHTML = `
     <div>닉네임 : ${posts.User.UserInfo.nickname}</div>
@@ -99,7 +98,6 @@ async function modifyPosts(e) {
   } else if (e.target.id == "post-delete") {
     {
       let { data: posts } = await getPostDetails();
-      console.log(posts);
       const deletebox = document.getElementById(e.target.parentElement.id);
       deletebox.innerHTML = `
           <div>닉네임 : ${posts.User.UserInfo.nickname}</div>
