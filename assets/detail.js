@@ -6,7 +6,6 @@ import {
   saveComments,
   modifyComments,
 } from "./modules/comments.js";
-import { likeBtn } from "./modules/forLikeButton.js";
 
 renderPostDetails();
 renderComments();
@@ -32,10 +31,37 @@ const postList = document.querySelector("#detail-list");
 insertCommentButton.addEventListener("click", saveComments); // 댓글저장
 
 postList.addEventListener("click", (e) => {
-  if (e.target.classList.contains("likeBtn")) {
-    likeBtn();
-  } else modifyPosts(e);
+  if (e.target.id == "likeBtn") {
+    // 클릭한 객체가 좋아요 버튼
+    var aniHeartM = document.querySelector(".ani_heart_m");
+
+    if (likeBtn.classList.contains("btn_unlike")) {
+      likeBtn.classList.remove("btn_unlike");
+      aniHeartM.classList.remove("hi");
+      aniHeartM.classList.add("bye");
+    } else {
+      likeBtn.classList.add("btn_unlike");
+      aniHeartM.classList.add("hi");
+      aniHeartM.classList.remove("bye");
+    }
+  } else {
+    // 수정
+    modifyPosts(e);
+  }
 });
+
+// $("#likeBtn").click(function () {
+//   if ($(this).hasClass("btn_unlike")) {
+//     $(this).removeClass("btn_unlike");
+//     $(".ani_heart_m").removeClass("hi");
+//     $(".ani_heart_m").addClass("bye");
+//   } else {
+//     $(this).addClass("btn_unlike");
+//     $(".ani_heart_m").addClass("hi");
+//     $(".ani_heart_m").removeClass("bye");
+//   }
+// });
+
 // 댓글 수정 삭제
 commentsList.addEventListener("click", (e) => {
   modifyComments(e);
