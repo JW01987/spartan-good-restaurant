@@ -28,6 +28,13 @@ async function renderPostDetails() {
   <div id="change">
   <button id="post-modify">수정</button>
   <button id="post-delete">삭제</button>
+  <button type="button" class="btn_like" id="likeBtn">
+  <span class="img_emoti">좋아요</span>
+  <span class="ani_heart_m"></span>
+  <a>${posts.likes}</a>  
+</button>
+</div>
+</div>
 </div>
   `;
   let container = document.querySelector("#detail-list");
@@ -39,7 +46,6 @@ async function modifyPosts(e) {
   // 게시물 수정시
   if (e.target.id == "post-modify") {
     let { data: posts } = await getPostDetails();
-    console.log(posts);
     const modifyBox = document.getElementById(e.target.parentElement.id);
     modifyBox.innerHTML = `
     <div>닉네임 : ${posts.User.UserInfo.nickname}</div>
@@ -92,7 +98,6 @@ async function modifyPosts(e) {
   } else if (e.target.id == "post-delete") {
     {
       let { data: posts } = await getPostDetails();
-      console.log(posts);
       const deletebox = document.getElementById(e.target.parentElement.id);
       deletebox.innerHTML = `
           <div>닉네임 : ${posts.User.UserInfo.nickname}</div>
@@ -136,4 +141,19 @@ async function modifyPosts(e) {
   }
 }
 
-export { renderPostDetails, modifyPosts };
+// 좋어요
+async function likeBtn() {
+  const aniHeartM = document.querySelector(".ani_heart_m");
+  const likeBtn = document.querySelector("#likeBtn");
+  if (likeBtn.classList.contains("btn_unlike")) {
+    likeBtn.classList.remove("btn_unlike");
+    aniHeartM.classList.remove("hi");
+    aniHeartM.classList.add("bye");
+  } else {
+    likeBtn.classList.add("btn_unlike");
+    aniHeartM.classList.add("hi");
+    aniHeartM.classList.remove("bye");
+  }
+}
+
+export { renderPostDetails, modifyPosts, likeBtn };
