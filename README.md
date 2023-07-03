@@ -58,7 +58,7 @@
 
 ### ✍️ 해결방법
 
-- likes 업데이트를 위해 post에서 해당 게시글이 있는지 확인 한 후 .upsate를 통해 칼럼을 업데이트 해줬다.
+- likes 업데이트를 위해 post에서 해당 게시글이 있는지 확인 한 후 .update를 통해 칼럼을 업데이트 해줬다.
   ![](https://velog.velcdn.com/images/jw01987/post/176a90f2-c8e1-4921-851a-ddced711edbf/image.png)
 
 ## 윤시호님
